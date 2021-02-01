@@ -2,7 +2,7 @@
 #   Main Configs   #
 # ---------------- #
 baseurl:
-url: http://shiyicao.com
+url: caoshiyi.github.io
 date_format: "ordinal"
 title: SHIYI-NOTES
 subtitle: "Life and Work"
