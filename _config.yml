@@ -112,7 +112,7 @@ collections:
 #      Comments    #
 # ---------------- #
 # support provider: disqus, gitment, gitalk
-comments_provider: gitalk
+comments_provider: gitment
 # !!!重要!!! 请修改下面这些信息为你自己申请的
 # !!!Important!!! Please modify infos below to yours
 # https://disqus.com
@@ -123,8 +123,8 @@ gitment:
     owner: caoshiyi
     repo: blog-comments
     oauth:
-        client_id: d2e1cbbd298958076462
-        client_secret: b42a4178e5fd4a7cf63189ef4b1453b05c375709
+        client_id: e8df8784a9b55a9a98c0
+        client_secret: 6467151558796601e9437de19136c5ae3ba40048
 # https://github.com/gitalk/gitalk#install
 # gitalk:
 #     owner: mzlogin
