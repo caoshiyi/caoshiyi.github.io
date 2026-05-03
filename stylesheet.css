@@ -656,7 +656,6 @@ html[data-theme="light"] .icon-moon,
         inset 0 1px 0 color-mix(in srgb, white 12%, transparent);
     animation: timeline-rail-flow-h 8s ease-in-out infinite;
     pointer-events: none;
-    z-index: 0;
 }
 
 @keyframes timeline-rail-flow-h {
@@ -690,7 +689,6 @@ html[data-theme="light"] .icon-moon,
     opacity: 0;
     filter: blur(5px);
     animation: timeline-pulse-h 4.6s ease-in-out infinite;
-    z-index: 0;
 }
 
 @keyframes timeline-pulse-h {
@@ -716,7 +714,6 @@ html[data-theme="light"] .icon-moon,
 
 .timeline-track-row > .news-item {
     position: relative;
-    z-index: 1;
     flex: 0 0 min(260px, 78vw);
     scroll-snap-align: start;
     display: flex;
@@ -754,7 +751,7 @@ html[data-theme="light"] .icon-moon,
         0 0 20px color-mix(in srgb, var(--accent) 35%, transparent),
         inset 0 -1px 2px rgba(0, 0, 0, 0.12);
     transition: transform 0.4s var(--ease-out), box-shadow 0.35s ease, border-color 0.3s ease;
-    z-index: 3;
+    z-index: 1;
 }
 
 .timeline-track-row > .news-item.animate-in.visible::before {
@@ -785,8 +782,6 @@ html[data-theme="light"] .icon-moon,
 }
 
 .timeline-track-row > .news-item .news-date {
-    position: relative;
-    z-index: 2;
     align-self: center;
     text-align: center;
     margin: 0;
@@ -870,7 +865,6 @@ html[data-theme="light"] .icon-moon,
 
 .news-card {
     position: relative;
-    z-index: 2;
     background: var(--bg-card);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -1542,6 +1536,9 @@ a.pub-media-placeholder:hover {
         padding: 30px 0 28px;
         margin-left: 0;
         margin-right: 0;
+        /* Safari/WebKit: edge mask + overflow scroll often clips or fades the rail wrongly. */
+        -webkit-mask-image: none;
+        mask-image: none;
     }
 
     .timeline-track-row {
@@ -1549,10 +1546,18 @@ a.pub-media-placeholder:hover {
         justify-content: flex-start;
     }
 
+    .timeline-track-row::before {
+        height: 4px;
+        border-radius: 5px;
+        box-shadow:
+            0 0 24px color-mix(in srgb, var(--accent) 22%, transparent),
+            inset 0 1px 0 color-mix(in srgb, white 14%, transparent);
+    }
+
     .timeline-track-row > .news-item {
         flex: 0 0 min(236px, 86vw);
-        min-height: 12.25rem;
-        gap: clamp(16px, 3.5vw, 26px);
+        min-height: 10.75rem;
+        gap: clamp(12px, 3vw, 20px);
     }
 
     .talk-item {
