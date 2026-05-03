@@ -1441,19 +1441,15 @@ a.pub-media-placeholder:hover {
 }
 
 @media (max-width: 700px) {
-    /*
-     * Fixed nav sits out of flow, so hero was starting at y=0 and only padding pushed the photo down —
-     * easy to still see the selfie through/under a tall two-row bar. Sticky keeps the bar in flow so
-     * the hero naturally begins below About / News / Research.
-     */
+    /* One row: logo | links (scroll if needed) | theme — matches desktop, avoids a second link row over the hero. */
     .navbar {
-        position: sticky;
+        position: fixed;
         top: 0;
-        left: auto;
-        right: auto;
-        width: 100%;
+        left: 0;
+        right: 0;
+        width: auto;
         max-width: none;
-        padding: calc(12px + env(safe-area-inset-top, 0px)) clamp(14px, 3vw, 24px) 12px;
+        padding: calc(10px + env(safe-area-inset-top, 0px)) clamp(10px, 3vw, 18px) 10px;
         background: var(--bg-nav);
         backdrop-filter: blur(20px) saturate(180%);
         -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -1466,39 +1462,55 @@ a.pub-media-placeholder:hover {
     }
 
     .hero {
-        padding-top: clamp(18px, 5vw, 32px);
+        padding-top: calc(env(safe-area-inset-top, 0px) + clamp(4rem, 18vw, 5.25rem));
     }
 
     .nav-inner {
-        grid-template-columns: minmax(0, 1fr) auto;
-        grid-template-rows: auto auto;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 6px;
+        max-width: var(--layout-max);
     }
 
     .nav-logo {
-        grid-column: 1;
-        grid-row: 1;
-    }
-
-    .nav-actions {
-        grid-column: 2;
-        grid-row: 1;
-        justify-self: end;
+        flex: 0 0 auto;
+        justify-self: unset;
+        max-width: 38vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .nav-center {
-        grid-column: 1 / -1;
-        grid-row: 2;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        gap: 4px;
-        margin-top: 4px;
-        padding-top: 8px;
-        border-top: 1px solid var(--border);
+        flex: 1 1 auto;
+        min-width: 0;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 2px;
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .nav-center::-webkit-scrollbar {
+        display: none;
     }
 
     .nav-center a {
-        padding: 6px 10px;
-        font-size: 12px;
+        flex: 0 0 auto;
+        padding: 5px 7px;
+        font-size: 11px;
+    }
+
+    .nav-actions {
+        flex: 0 0 auto;
+        flex-wrap: nowrap;
+        justify-self: unset;
     }
 
     .timeline-track {
