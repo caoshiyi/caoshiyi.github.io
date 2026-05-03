@@ -1441,9 +1441,32 @@ a.pub-media-placeholder:hover {
 }
 
 @media (max-width: 700px) {
-    /* Two-row nav (logo + links); fixed bar is taller than desktop — push hero down so the photo clears the links. */
+    /*
+     * Fixed nav sits out of flow, so hero was starting at y=0 and only padding pushed the photo down —
+     * easy to still see the selfie through/under a tall two-row bar. Sticky keeps the bar in flow so
+     * the hero naturally begins below About / News / Research.
+     */
+    .navbar {
+        position: sticky;
+        top: 0;
+        left: auto;
+        right: auto;
+        width: 100%;
+        max-width: none;
+        padding: calc(12px + env(safe-area-inset-top, 0px)) clamp(14px, 3vw, 24px) 12px;
+        background: var(--bg-nav);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .navbar.scrolled {
+        padding-top: calc(8px + env(safe-area-inset-top, 0px));
+        padding-bottom: 8px;
+    }
+
     .hero {
-        padding-top: max(9rem, calc(env(safe-area-inset-top, 0px) + 7.75rem));
+        padding-top: clamp(18px, 5vw, 32px);
     }
 
     .nav-inner {
@@ -1511,10 +1534,6 @@ a.pub-media-placeholder:hover {
 }
 
 @media (max-width: 520px) {
-    .hero {
-        padding-top: max(10rem, calc(env(safe-area-inset-top, 0px) + 8.5rem));
-    }
-
     .nav-logo {
         font-size: 13px;
     }
