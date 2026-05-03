@@ -1441,6 +1441,11 @@ a.pub-media-placeholder:hover {
 }
 
 @media (max-width: 700px) {
+    /* Two-row nav (logo + links); fixed bar is taller than desktop — push hero down so the photo clears the links. */
+    .hero {
+        padding-top: max(9rem, calc(env(safe-area-inset-top, 0px) + 7.75rem));
+    }
+
     .nav-inner {
         grid-template-columns: minmax(0, 1fr) auto;
         grid-template-rows: auto auto;
@@ -1506,6 +1511,10 @@ a.pub-media-placeholder:hover {
 }
 
 @media (max-width: 520px) {
+    .hero {
+        padding-top: max(10rem, calc(env(safe-area-inset-top, 0px) + 8.5rem));
+    }
+
     .nav-logo {
         font-size: 13px;
     }
