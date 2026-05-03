@@ -601,7 +601,7 @@ html[data-theme="light"] .icon-moon,
     box-sizing: border-box;
     overflow-x: auto;
     overflow-y: visible;
-    padding: 20px 0 16px;
+    padding: 26px 0 22px;
     margin: 0 0 4px;
     scroll-padding-inline: 0;
     scroll-snap-type: inline proximity;
@@ -622,7 +622,7 @@ html[data-theme="light"] .icon-moon,
     );
 }
 
-/* Glow rail (horizontal, vertically centered) */
+/* Glow rail (horizontal, centered on track — cards alternate above / below) */
 .timeline-track::before {
     content: '';
     position: absolute;
@@ -648,6 +648,7 @@ html[data-theme="light"] .icon-moon,
         inset 0 1px 0 color-mix(in srgb, white 12%, transparent);
     animation: timeline-rail-flow-h 8s ease-in-out infinite;
     pointer-events: none;
+    z-index: 0;
 }
 
 @keyframes timeline-rail-flow-h {
@@ -681,6 +682,7 @@ html[data-theme="light"] .icon-moon,
     opacity: 0;
     filter: blur(5px);
     animation: timeline-pulse-h 4.6s ease-in-out infinite;
+    z-index: 0;
 }
 
 @keyframes timeline-pulse-h {
@@ -706,15 +708,16 @@ html[data-theme="light"] .icon-moon,
 
 .timeline-track > .news-item {
     position: relative;
+    z-index: 1;
     flex: 0 0 min(260px, 78vw);
     scroll-snap-align: start;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: space-between;
-    gap: clamp(8px, 2vw, 14px);
-    min-height: clamp(10.5rem, 26vw, 13rem);
-    padding: 6px 0 8px;
+    gap: clamp(14px, 3.2vw, 24px);
+    min-height: clamp(11.75rem, 29vw, 14.5rem);
+    padding: 8px 0 10px;
     box-sizing: border-box;
 }
 
@@ -722,7 +725,7 @@ html[data-theme="light"] .icon-moon,
     flex-direction: column-reverse;
 }
 
-/* Milestone node on horizontal rail */
+/* Milestone node on horizontal rail (column vertical center) */
 .timeline-track > .news-item::before {
     content: '';
     position: absolute;
@@ -743,7 +746,7 @@ html[data-theme="light"] .icon-moon,
         0 0 20px color-mix(in srgb, var(--accent) 35%, transparent),
         inset 0 -1px 2px rgba(0, 0, 0, 0.12);
     transition: transform 0.4s var(--ease-out), box-shadow 0.35s ease, border-color 0.3s ease;
-    z-index: 1;
+    z-index: 3;
 }
 
 .timeline-track > .news-item.animate-in.visible::before {
@@ -774,6 +777,8 @@ html[data-theme="light"] .icon-moon,
 }
 
 .timeline-track > .news-item .news-date {
+    position: relative;
+    z-index: 2;
     align-self: center;
     text-align: center;
     margin: 0;
@@ -857,6 +862,7 @@ html[data-theme="light"] .icon-moon,
 
 .news-card {
     position: relative;
+    z-index: 2;
     background: var(--bg-card);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -1446,19 +1452,20 @@ a.pub-media-placeholder:hover {
 }
 
 @media (max-width: 700px) {
-    /* One row: logo | links (scroll if needed) | theme — matches desktop, avoids a second link row over the hero. */
+    /* Two rows: logo + theme | links (wrap). Sticky = bar stays in flow so hero clears the photo. */
     .navbar {
-        position: fixed;
+        position: sticky;
         top: 0;
-        left: 0;
-        right: 0;
-        width: auto;
+        left: auto;
+        right: auto;
+        width: 100%;
         max-width: none;
-        padding: calc(10px + env(safe-area-inset-top, 0px)) clamp(10px, 3vw, 18px) 10px;
+        padding: calc(12px + env(safe-area-inset-top, 0px)) clamp(14px, 3vw, 22px) 12px;
         background: var(--bg-nav);
         backdrop-filter: blur(20px) saturate(180%);
         -webkit-backdrop-filter: blur(20px) saturate(180%);
         border-bottom: 1px solid var(--border);
+        z-index: 100;
     }
 
     .navbar.scrolled {
@@ -1467,68 +1474,74 @@ a.pub-media-placeholder:hover {
     }
 
     .hero {
-        padding-top: calc(env(safe-area-inset-top, 0px) + clamp(4rem, 18vw, 5.25rem));
+        padding-top: clamp(16px, 4vw, 28px);
     }
 
     .nav-inner {
-        display: flex;
-        flex-wrap: nowrap;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-rows: auto auto;
         align-items: center;
-        gap: 6px;
+        column-gap: 14px;
+        row-gap: 10px;
         max-width: var(--layout-max);
     }
 
     .nav-logo {
-        flex: 0 0 auto;
-        justify-self: unset;
-        max-width: 38vw;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: start;
+        max-width: none;
+        overflow: visible;
+        text-overflow: clip;
         white-space: nowrap;
     }
 
-    .nav-center {
-        flex: 1 1 auto;
-        min-width: 0;
-        justify-content: center;
+    .nav-actions {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
         flex-wrap: nowrap;
-        gap: 2px;
-        margin-top: 0;
-        padding-top: 0;
-        border-top: none;
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
     }
 
-    .nav-center::-webkit-scrollbar {
-        display: none;
+    .nav-center {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 6px 8px;
+        margin-top: 0;
+        padding-top: 10px;
+        border-top: 1px solid var(--border);
+        overflow-x: visible;
+        overflow-y: visible;
+        min-width: 0;
     }
 
     .nav-center a {
-        flex: 0 0 auto;
-        padding: 5px 7px;
-        font-size: 11px;
+        padding: 6px 10px;
+        font-size: 12px;
     }
 
-    .nav-actions {
-        flex: 0 0 auto;
-        flex-wrap: nowrap;
-        justify-self: unset;
+    .news-archive {
+        margin-top: 18px;
     }
 
     .timeline-track {
         --timeline-pad-x: 0px;
         gap: 12px;
-        padding-left: 0;
-        padding-right: 0;
+        padding: 30px 0 28px;
+        margin-left: 0;
+        margin-right: 0;
         justify-content: flex-start;
     }
 
     .timeline-track > .news-item {
         flex: 0 0 min(236px, 86vw);
-        min-height: 9.5rem;
+        min-height: 12.25rem;
+        gap: clamp(16px, 3.5vw, 26px);
     }
 
     .talk-item {
