@@ -23,9 +23,8 @@
     --layout-max: min(980px, calc(100vw - 40px));
     --content-column: var(--layout-max);
     --gap-section: clamp(28px, 4vw, 52px);
-}
 
-html[data-theme="light"], :root {
+    /* Light theme (default) */
     --bg-base: #f6f7fb;
     --bg-primary: #f6f7fb;
     --bg-secondary: #ffffff;

@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shiyi Cao</title>
+    <script>
+        (function () {
+            var html = document.documentElement;
+            html.removeAttribute('data-palette');
+            try { localStorage.removeItem('palette'); } catch (e) { /* private mode */ }
+            var saved = null;
+            try { saved = localStorage.getItem('theme'); } catch (e) { /* private mode */ }
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            var dark = saved ? saved === 'dark' : prefersDark;
+            html.setAttribute('data-theme', dark ? 'dark' : 'light');
+        })();
+    </script>
     <meta name="author" content="Shiyi Cao">
     <meta name="description" content="Shiyi Cao | PhD @ UC Berkeley | MS @ ETH Zürich | BS @ SJTU">
     <link rel="icon" type="image/png" href="images/logo 3.png">
@@ -434,19 +446,11 @@
         const themeToggle = document.getElementById('theme-toggle');
         const html = document.documentElement;
 
-        html.removeAttribute('data-palette');
-        localStorage.removeItem('palette');
-
         function setTheme(dark) {
             html.setAttribute('data-theme', dark ? 'dark' : 'light');
-            localStorage.setItem('theme', dark ? 'dark' : 'light');
-        }
-
-        const saved = localStorage.getItem('theme');
-        if (saved) {
-            setTheme(saved === 'dark');
-        } else {
-            setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
+            try {
+                localStorage.setItem('theme', dark ? 'dark' : 'light');
+            } catch (e) { /* private mode */ }
         }
 
         themeToggle.addEventListener('click', () => {
