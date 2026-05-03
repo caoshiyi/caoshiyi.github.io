@@ -1,521 +1,550 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Hi, Rishab Here. Please DELETE the two <script> tags below if you use this HTML, otherwise my analytics will track your page -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMFMRXFF8Z"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-XMFMRXFF8Z');
-    </script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-102766803-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-102766803-2');
-    </script> -->
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shiyi Cao</title>
-
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
     <meta name="author" content="Shiyi Cao">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="Description" content="Shiyi Cao |PhD @ UC Berkeley | MS @ ETH Zürich | BS @ SJTU">
-
-    <!-- <link rel="stylesheet" type="text/css" href="stylesheet.css"> -->
+    <meta name="description" content="Shiyi Cao | PhD @ UC Berkeley | MS @ ETH Zürich | BS @ SJTU">
     <link rel="icon" type="image/png" href="images/logo 3.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
+<body>
 
-<body class="bg_colour">
-    <table border=0 class="bg_colour"
-        style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-        <tbody>
-            <tr style="padding:0px">
-                <td style="padding:0px">
+    <div class="ambient-bg" aria-hidden="true">
+        <div class="ambient-grid"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+    <div class="grain-overlay"></div>
 
-                    <!-- Name tab -->
-                    <table border=0 class="bg_colour"
-                        style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                        <tbody>
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">Shiyi Cao</a>
+            <div class="nav-center">
+                <a href="#about">About</a>
+                <a href="#news">News</a>
+                <a href="#publications">Research</a>
+                <a href="#talks">Talks</a>
+                <a href="mailto:shiyicao314@gmail.com">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
 
+    <header class="hero" id="about">
+        <div class="hero-shell">
+            <div class="hero-dense">
+                <a href="images/self.jpeg" class="hero-photo-link" aria-label="Open profile photo">
+                    <img src="images/self.jpeg" alt="Shiyi Cao" class="hero-photo" width="312" height="312" decoding="async">
+                </a>
+                <div class="hero-copy-dense">
+                    <h1 class="hero-name">
+                        <span class="hero-name-line">Shiyi Cao</span>
+                        <span class="hero-name-cn">曹诗怡</span>
+                    </h1>
+                    <p class="hero-affil">
+                        I am a third-year Ph.D. student at <a href="https://eecs.berkeley.edu/" target="_blank">UC Berkeley EECS</a>, advised by
+                        <a href="https://people.eecs.berkeley.edu/~istoica/" target="_blank">Ion Stoica</a> and
+                        <a href="https://people.eecs.berkeley.edu/~jegonzal/" target="_blank">Joseph Gonzalez</a>, affiliated with
+                        <a href="https://sky.cs.berkeley.edu/" target="_blank">Sky Computing Lab</a> and
+                        <a href="https://bair.berkeley.edu/" target="_blank">BAIR</a>.
+                    </p>
+                    <p class="hero-bio">
+                        Previously, I was fortunate to be working with <a href="https://www.cs.cmu.edu/~zhihaoj2/" target="_blank">Zhihao Jia</a> at CMU on accelerating distributed training.
+                        I obtained M.S. in Computer Science at <a href="https://ethz.ch/de.html" target="_blank">ETH</a>, working at <a href="https://spcl.inf.ethz.ch/" target="_blank">SPCL</a> with <a href="http://htor.inf.ethz.ch/" target="_blank">Torsten Hoefler</a>.
+                        Prior to joining grad school, I had a great time at <a href="https://www.sjtu.edu.cn/" target="_blank">Shanghai Jiao Tong University</a> where I earned a bachelor's degree in Computer Science.
+                    </p>
+                    <p class="hero-bio">
+                        I am mainly interested in <strong>automated</strong> optimization of ML computations on large-scale <strong>heterogeneous hardwares</strong>.
+                    </p>
+                <div class="hero-links" aria-label="Social and contact links">
+                        <a href="mailto:shiyicao314@gmail.com" class="link-pill" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            Email
+                        </a>
+                        <a href="data/Resume.pdf" class="link-pill" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            CV
+                        </a>
+                        <a href="https://github.com/caoshiyi" class="link-pill" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.586 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                            GitHub
+                        </a>
+                        <a href="https://scholar.google.com/citations?hl=en&authuser=1&user=NR59_v4AAAAJ" class="link-pill" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+                            Scholar
+                        </a>
+                        <a href="https://twitter.com/shiyi_c98" class="link-pill" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            Twitter
+                        </a>
+                        <a href="https://www.instagram.com/shiyi_c98/" class="link-pill" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                            Instagram
+                        </a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-                            <tr style="padding:0px">
-                                <td style="padding:2.5%;width:40%;max-width:30%">
-                                    <a href="images/self.jpeg"><img style="width:100%;max-width:100%"
-                                            alt="profile photo" src="images/self.jpeg" class="hoverZoomLink"></a>
-                                </td>
-                                <td style="padding:2.5%;width:60%;vertical-align:middle">
-                                    <p style="text-align:center">
-                                    <h1 style="text-align:center">
-                                        <name>Shiyi Cao 「曹诗怡」</name>
-                                    </h1>
-                                    </p>
-                                    <p style="text-align:center">
-                                        &nbsp|&nbsp
-                                        <a href="#news" onclick=Expand("news")>News</a>
-                                        &nbsp|&nbsp
-                                        <!-- <a href="#experience" onclick=Expand("experience")>Experience</a>
-                                        &nbsp|&nbsp -->
-                                        <a href="#publications" onclick=Expand("publications")>Publications</a>
-                                        &nbsp|&nbsp
-                                        <a href="#projects" onclick=Expand("projects")>Projects</a>
-                                        &nbsp|&nbsp
-                                        <a href="mailto:shiyicao314@gmail.com">Contact</a>
-                                        &nbsp|&nbsp
-                                    </p>
-                                    <p>I am a third-year Ph.D. student at <a href="https://eecs.berkeley.edu/" target="_blank">UC Berkeley EECS
-                                    </a>, advised by <a href="https://people.eecs.berkeley.edu/~istoica/" target="_blank">Ion Stoica</a> 
-                                    and <a href="https://people.eecs.berkeley.edu/~jegonzal/" target="_blank">Joseph Gonzalez</a>, affiliated with 
-                                    <a href="https://sky.cs.berkeley.edu/" target="_blank">Sky Computing Lab</a> and
-                                    <a href="https://bair.berkeley.edu/" target="_blank">BAIR</a>. 
-                                    
-                                    Previously, I was fortunate to be working with <a href="https://www.cs.cmu.edu/~zhihaoj2/" target="_blank">Zhihao Jia</a> at
-                                    CMU on accelerating distributed training. I obtained M.S. in Computer Science
-                                    at <a href="https://ethz.ch/de.html" target="_blank">ETH</a>, working at <a href="https://spcl.inf.ethz.ch/" target="_blank">SPCL</a> with
-                                    <a href="http://htor.inf.ethz.ch/" target="_blank">Torsten Hoefler</a>. Prior to
-                                    joining grad school, I had a great time at <a href="https://www.sjtu.edu.cn/" target="_blank">Shanghai
-                                        Jiao Tong University</a> where I earned Bachelor degree in Computer Science.
-
-                                        I am mainly interested in accelerating/optimizing computations (especially ML
-                                        workloads) on large-scale <strong>heterogeneous</strong> systems. 
-                                    </p>
-
-<!-- 
-                                    <div style="border-left: 4px solid #3b5998; background-color: #f4f6fb; border-radius: 8px; padding: 15px 20px; margin-top: 10px; margin-bottom: 10px; font-size: 16px;">
-                                        <p style="margin: 0;">
-                                          <strong>🔍 I'm looking for research interns!</strong><br>
-                                          Interested in <strong>efficient RL training systems</strong> or <strong>agent training</strong>? 
-                                          Reach out via this <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTfY866sQYA-ytj7Aag3b65uOvRV0jw_48HBa49bSCebxAyg/viewform?usp=dialog" target="_blank"><u>form</u></a> if you'd like to work with me.
-                                        </p>
-                                    </div> -->
-
-                                    <!-- <div style="border-left: 4px solid #FDB515; background-color: #fffdf5; border-radius: 8px; padding: 15px 20px; margin-top: 20px; margin-bottom: 40px; font-size: 16px;">
-                                        <p style="margin: 0;">
-                                          <strong>🔍 I'm looking for research interns!</strong><br>
-                                          Interested in <strong>efficient RL training systems</strong> or <strong>agent training</strong>? 
-                                          Fill out this <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTfY866sQYA-ytj7Aag3b65uOvRV0jw_48HBa49bSCebxAyg/viewform?usp=dialog" target="_blank"><u>form</u></a> if you'd like to work with me.
-                                        </p>
-                                    </div> -->
-                                      
-                                    
-
-                                    <p style="text-align:center">
-                                        &nbsp~&nbsp
-                                        <a href="mailto:shiyicao314@gmail.com" target="_blank">Email</a> &nbsp|&nbsp
-                                        <a href="data/Resume.pdf" target="_blank">CV</a> &nbsp|&nbsp
-                                        <a href="https://github.com/caoshiyi" target="_blank">Github</a>
-                                        &nbsp|&nbsp
-                                        <a href="https://scholar.google.com/citations?hl=en&authuser=1&user=NR59_v4AAAAJ"
-                                            target="_blank">Google Scholar</a>
-                                        &nbsp|&nbsp
-                                        <a href="https://twitter.com/shiyi_c98" target="_blank">Twitter</a>
-                                        &nbsp|&nbsp
-                                        <a href="https://www.instagram.com/shiyi_c98/" target="_blank">INS</a>
-                                        &nbsp~&nbsp
-                                    </p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-              
-                    <hr class="soft">
-                    <!-- News -->
-
-                    <!-- <br> -->
-                    <button style="border:0px transparent; background-color: transparent;outline:none;" type="button"
-                        class="collapsible" data-toggle="collapse" data-target="#content-news" id="news">
-                        <heading>News</heading>
-                    </button>
-                    <!-- <div class="container"> -->
-                    <div id="content-news" class="collapse in">
-                        <!-- <div class="scroll">  -->
-
-                        <table border=0 class="bg_colour"
-                            style="padding:10px;width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <p style="color:darkblue; display:inline">Oct '25 &nbsp</p>
-                                    </td>
-                                    <td>
-                                        Excited to receive <a href="https://eecs.berkeley.edu/news/eecs-students-drive-ai-innovation-as-amazon-phd-fellows/"
-                                        target="_blank">Amazon AI Fellowship</a>!
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <p style="color:darkblue; display:inline">Aug '25 &nbsp</p>
-                                    </td>
-                                    <td>
-                                        Two papers (<a href="https://aclanthology.org/anthology-files/anthology-files/pdf/findings/2025.findings-emnlp.866.pdf"
-                                        target="_blank">Sky-T1</a> and <a href="https://arxiv.org/abs/2502.14382"
-                                        target="_blank">S*</a>) are accepted as EMNLP '25 Findings!
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-                                    <td>
-                                        <p style="color:darkblue; display:inline">May '25 &nbsp</p>
-                                    </td>
-                                    <td>
-                                        Excited to announce the release of <a href="https://novasky-ai.notion.site/skyrl-v0"
-                                        target="_blank">SkyRL</a>, an RL framework for training Real-World Long-Horizon Agents!
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <p style="color:darkblue; display:inline">Feb '25 &nbsp</p>
-                                    </td>
-                                    <td>
-                                        Invited talk at the <a href="https://slice.eecs.berkeley.edu/" target="_blank">SLICE Lab</a>, UC Berkeley, hosted by <a href="https://people.eecs.berkeley.edu/~ysshao/students.html" target="_blank">Prof. Sophia Shao</a>, on <a href="https://arxiv.org/abs/2411.11217" target="_blank">MoE-Lightning</a>.
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <p style="color:darkblue; display:inline">Feb '25 &nbsp</p>
-                                    </td>
-                                    <td>
-                                        Invited talk at the <a href="https://sampl.cs.washington.edu/" target="_blank">SAMPL group</a>, University of Washington, hosted by <a href="https://expye.com/about" target="_blank">Zihao Ye</a>, on <a href="https://arxiv.org/abs/2411.11217" target="_blank">MoE-Lightning</a> and <a href="https://novasky-ai.github.io/posts/sky-t1/" target="_blank">Sky-T1</a>. 
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <p style="color:darkblue; display:inline">Feb '25 &nbsp</p>
-                                    </td>
-                                    <td>
-                                        <a href="https://novasky-ai.github.io/posts/sky-t1/" target="_blank">Sky-T1</a> is featured in  <a href="https://www.nytimes.com/2025/01/23/technology/deepseek-china-ai-chips.html"
-                                        target="_blank">The New York Times</a>, <a href="https://www.wsj.com/tech/ai/why-distillation-has-become-the-scariest-wordfor-ai-companies-aa146ae3"
-                                        target="_blank">The Wall Street Journal</a>, and <a href="https://www.theinformation.com/articles/why-its-cheap-and-easy-to-mimic-openais-reasoning-model"
-                                        target="_blank">The Information</a>!
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td>
-                                        <p style="color:darkblue; display:inline">Oct '24 &nbsp</p>
-                                    </td>
-                                    <td>
-                                        Two papers (<a href="https://arxiv.org/abs/2411.11217"
-                                        target="_blank">MoE-Lightning</a> and <a href="https://arxiv.org/abs/2406.17145"
-                                        target="_blank">GraphPipe</a>) are accepted at ASPLOS '25!
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <p style="color:darkblue; display:inline">Oct '23 &nbsp</p>
-                                    </td>
-                                    <td>
-                                        Released <a href="https://github.com/S-LoRA/S-LoRA"
-                                        target="_blank">S-LoRA</a>, a scalable system for serving thousands of LoRA adapters concurrently!
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <p style="color:darkblue; display:inline">Aug '23 &nbsp</p>
-                                    </td>
-                                    <td>
-                                        Graduated from ETH and joined UC Berkeley EECS!
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                        <!-- </div> -->
-                        <!-- </div> -->
+    <section class="section section-news" id="news" aria-labelledby="news-heading">
+        <div class="section-shell">
+            <header class="section-heading">
+                <h2 id="news-heading" class="rail-title">
+                    <span class="rail-number">01</span>
+                    News
+                </h2>
+                <p class="rail-desc">Updates &amp; highlights.</p>
+            </header>
+            <div class="section-body">
+                <div class="timeline">
+                    <div class="timeline-track">
+                        <div class="news-item animate-in">
+                            <span class="news-date">Feb &apos;26</span>
+                            <div class="news-card">
+                                <span class="news-text">Excited to release <a href="https://arxiv.org/abs/2602.19128" target="_blank">K-Search</a> for automated high-performance GPU kernel generation!</span>
+                            </div>
+                        </div>
+                        <div class="news-item animate-in">
+                            <span class="news-date">Oct &apos;25</span>
+                            <div class="news-card">
+                                <span class="news-text">Excited to receive <a href="https://eecs.berkeley.edu/news/eecs-students-drive-ai-innovation-as-amazon-phd-fellows/" target="_blank">Amazon AI Fellowship</a>!</span>
+                            </div>
+                        </div>
+                        <div class="news-item animate-in">
+                            <span class="news-date">Aug &apos;25</span>
+                            <div class="news-card">
+                                <span class="news-text">Two papers (<a href="https://aclanthology.org/anthology-files/anthology-files/pdf/findings/2025.findings.emnlp.866.pdf" target="_blank">Sky-T1</a> and <a href="https://arxiv.org/abs/2502.14382" target="_blank">S*</a>) are accepted as EMNLP &apos;25 Findings!</span>
+                            </div>
+                        </div>
                     </div>
-                    <hr class="soft">
+                    <details class="news-archive" id="news-archive">
+                        <summary class="news-archive-summary" id="news-archive-summary" aria-expanded="false" aria-controls="news-archive-panel">
+                            <span class="news-archive-label">Earlier highlights</span>
+                            <span class="news-archive-hint" aria-hidden="true">5 more</span>
+                        </summary>
+                        <div class="news-archive-inner" id="news-archive-panel" role="region" aria-label="Earlier news items">
+                            <div class="news-item">
+                                <span class="news-date">May &apos;25</span>
+                                <div class="news-card">
+                                    <span class="news-text">Excited to announce the release of <a href="https://novasky-ai.notion.site/skyrl-v0" target="_blank">SkyRL</a>, an RL framework for training Real-World Long-Horizon Agents!</span>
+                                </div>
+                            </div>
+                            <div class="news-item">
+                                <span class="news-date">Feb &apos;25</span>
+                                <div class="news-card">
+                                    <span class="news-text"><a href="https://novasky-ai.github.io/posts/sky-t1/" target="_blank">Sky-T1</a> is featured in <a href="https://www.nytimes.com/2025/01/23/technology/deepseek-china-ai-chips.html" target="_blank">The New York Times</a>, <a href="https://www.wsj.com/tech/ai/why-distillation-has-become-the-scariest-wordfor-ai-companies-aa146ae3" target="_blank">The Wall Street Journal</a>, and <a href="https://www.theinformation.com/articles/why-its-cheap-and-easy-to-mimic-openais-reasoning-model" target="_blank">The Information</a>!</span>
+                                </div>
+                            </div>
+                            <div class="news-item">
+                                <span class="news-date">Oct &apos;24</span>
+                                <div class="news-card">
+                                    <span class="news-text">Two papers (<a href="https://arxiv.org/abs/2411.11217" target="_blank">MoE-Lightning</a> and <a href="https://arxiv.org/abs/2406.17145" target="_blank">GraphPipe</a>) are accepted at ASPLOS &apos;25!</span>
+                                </div>
+                            </div>
+                            <div class="news-item">
+                                <span class="news-date">Oct &apos;23</span>
+                                <div class="news-card">
+                                    <span class="news-text">Released <a href="https://github.com/S-LoRA/S-LoRA" target="_blank">S-LoRA</a>, a scalable system for serving thousands of LoRA adapters concurrently!</span>
+                                </div>
+                            </div>
+                            <div class="news-item">
+                                <span class="news-date">Aug &apos;23</span>
+                                <div class="news-card">
+                                    <span class="news-text">Graduated from ETH and joined UC Berkeley EECS!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="section section-pubs section-alt" id="publications" aria-labelledby="pubs-heading">
+        <div class="section-shell">
+            <header class="section-heading">
+                <h2 id="pubs-heading" class="rail-title">
+                    <span class="rail-number">02</span>
+                    Publications
+                </h2>
+                <p class="rail-desc">Projects I led or co-led.</p>
+            </header>
+            <div class="section-body">
+                <div class="pub-list">
 
-                    <!-- Publications -->
-
-                    <button style="border:0px transparent; background-color: transparent;outline:none;" type="button"
-                        class="collapsible" data-toggle="collapse" data-target="#content-publications"
-                        id="publications">
-                        <heading>Publications</heading>
-                    </button>
-                    <div id="content-publications" class="collapse in">
-
-                        <table border=0 class="bg_colour"
-                            style="padding:20px;width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                            <tbody>
-
-                                <tr>
-                                    <td style="padding:10px;width:45%;vertical-align:middle">
-                                        <div class="one" style="display:flex;align-items:center;height:100%;width:100%;">
-                                            <a href="images/CGOPipe-full.gif">
-                                                <img src='images/CGOPipe-full.gif' class="hoverZoomLink" style="width: 100%; vertical-align:middle;">
-                                            </a>
-                                        </div>
-                                    </td>
-                                    <td style="padding:20px;width:55%;vertical-align:top">
-                                        <papertitle>MoE-Lightning: High-Throughput MoE Inference on Memory-constrained GPUs</papertitle> (<a
-                                            href="https://arxiv.org/abs/2411.11217" target="_blank">Arxiv</a>)
-                                        <br>
-                                        <strong>Shiyi Cao</strong>,&nbsp Shu Liu,&nbsp Tyler Griggs,&nbsp Peter Schafhalter,&nbsp Xiaoxuan Liu,&nbsp Ying Sheng,&nbsp
-                                        Joseph E Gonzalez,&nbsp Matei Zaharia,&nbsp Ion Stoica&nbsp
-                                        <br>
-                                        <em>ASPLOS 2025.</em>
-                                        <br>
-                                        <font color="gray">Mixture of Experts; LLM Batch Inference; CPU Offloading.</font>
-                                        <br>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td style="padding:10px;width:45%;vertical-align:middle">
-                                        <div class="one" style="display:flex;align-items:center;height:100%;width:100%;">
-                                            <a href="images/gpp_ex1.png">
-                                                <img src='images/gpp_ex1.png' class="hoverZoomLink" style="width: 100%; vertical-align:middle;">
-                                            </a>
-                                        </div>
-                                    </td>
-                                    <td style="padding:20px;width:55%;vertical-align:top">
-                                        <papertitle>GraphPipe: Improving Performance and Scalability of DNN Training with Graph Pipeline Parallelism</papertitle> (<a
-                                            href="https://arxiv.org/abs/2406.17145" target="_blank">Arxiv</a>)
-                                        <br>
-                                        Byungsoo Jeon*,&nbsp Mengdi Wu*,&nbsp <strong>Shiyi Cao*</strong>,&nbsp Sunghyun Kim*,&nbsp Sunghyun Park,&nbsp
-                                        Neeraj Aggarwal,&nbsp Colin Unger,&nbsp Daiyaan Arfeen,&nbsp Peiyuan Liao,&nbsp Xupeng Miao,&nbsp Mohammad Alizadeh,&nbsp
-                                        Gregory R. Ganger,&nbsp Tianqi Chen,&nbsp Zhihao Jia
-                                        <br>
-                                        <em>ASPLOS 2025.</em>
-                                        <br>
-                                        <font color="gray">Distributed Training; Pipeline Parallelism.</font>
-                                        <br>
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-                                    <td style="padding:20px;width:45%;vertical-align:middle">
-                                        <div class="one" style="display:flex;align-items:center;height:100%;width:100%;">
-                                            <a href="images/vtc.jpg"><img src='images/vtc.jpg' style="width:80%; vertical-align:middle;"
-                                                    class="hoverZoomLink"></a>
-                                        </div>
-                                    </td>
-                                    <td style="padding:20px;width:55%;vertical-align:top">
-                                        <papertitle>Fairness in Serving Large Language Models</papertitle> (<a
-                                            href="https://arxiv.org/abs/2401.00588" target="_blank">Arxiv</a>)
-                                        <br>
-                                        Ying Sheng,&nbsp <strong>Shiyi Cao</strong>,&nbsp Dacheng Li,&nbsp Banghua Zhu,&nbsp Zhuohan Li,&nbsp Danyang Zhuo,&nbsp
-                                        Joseph E Gonzalez,&nbsp Ion Stoica&nbsp
-                                        <br>
-                                        <em>OSDI 2024.</em>
-                                        <br>
-                                        <font color="gray">LLM Serving; Fair Scheduling.</font>
-                                        <br>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td style="padding:20px;width:45%;vertical-align:middle">
-                                        <div class="one" style="display:flex;align-items:center;height:100%;width:100%;">
-                                            <a href="images/slora.png"><img src='images/slora.png' style="width:100%; vertical-align:middle;"
-                                                    class="hoverZoomLink"></a>
-                                        </div>
-                                    </td>
-                                    <td style="padding:20px;width:55%;vertical-align:top">
-                                        <papertitle>S-LoRA: Serving Thousands of Concurrent LoRA Adapters</papertitle> (<a
-                                            href="https://arxiv.org/abs/2311.03285" target="_blank">Arxiv</a>,
-                                            <a href="https://github.com/S-LoRA/S-LoRA" target="_blank">Github</a>,
-                                            <a href="https://lmsys.org/blog/2023-11-15-slora/" target="_blank">Blog</a>)
-                                        <br>
-                                        Ying Sheng*,&nbsp <strong>Shiyi Cao*</strong>,&nbsp Dacheng Li,&nbsp Coleman Hooper,&nbsp Nicholas Lee,&nbsp Shuo Yang,&nbsp
-                                        Christopher Chou,&nbsp Banghua Zhu,&nbsp Lianmin Zheng,&nbsp Kurt Keutzer,&nbsp
-                                        Joseph E. Gonzalez,&nbsp Ion Stoica&nbsp
-                                        <br>
-                                        <em>MLSys 2024.</em>
-                                        <br>
-                                        <font color="gray">LLM Inference; LoRA; Adapters; Memory Management.</font>
-                                        <br>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td style="padding:20px;width:45%;vertical-align:middle">
-                                        <div class="one" style="display:flex;align-items:center;height:100%;width:100%;">
-                                            <a href="images/spin.png"><img src='images/spin.png' style="width:100%; vertical-align:middle;"
-                                                    class="hoverZoomLink"></a>
-                                        </div>
-                                    </td>
-                                    <td style="padding:20px;width:55%;vertical-align:top">
-                                        <papertitle>Accelerating Data Serialization/Deserialization
-                                            Protocols with In-Network Compute</papertitle> (<a
-                                            href="data/InNet_SerDes.pdf" target="_blank">pdf</a>, <a
-                                            href="https://www.youtube.com/watch?v=zxtZOtX1jw4&list=PLerS07GSe_l56MQ-Sna34XdPeTy9H45Ah&index=2" target="_blank">video</a>)
-                                        <br>
-                                        <strong>Shiyi Cao</strong>,&nbsp
-                                        Salvatore Di Girolamo,&nbsp
-                                        Torsten Hoefler&nbsp
-                                        <br>
-                                        <em>Workshop on Exascale MPI, ExaMPI@SC</em>,&nbsp2022.&nbsp
-                                        <br>
-                                        <font color="gray">SmartNICs; In-Network Compute; Data (De)serialization.</font>
-                                        <br>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td style="padding:20px;width:45%;vertical-align:middle">
-                                        <div class="one" style="display:flex;align-items:center;height:100%;width:100%;">
-                                            <a href="images/adam.png"><img src='images/adam.png' style="width:100%; vertical-align:middle;"
-                                                    class="hoverZoomLink"></a>
-                                        </div>
-                                    </td>
-                                    <td style="padding:20px;width:55%;vertical-align:top">
-                                        <a href="https://dl.acm.org/doi/10.1145/3337821.3337822" target="_blank">
-                                            <papertitle>AdaM: An Adaptive Fine-Grained Scheme for Distributed
-                                                Metadata Management</papertitle>
-                                        </a>
-                                        <br>
-                                        <strong>Shiyi Cao</strong>,&nbsp
-                                        Yuanning Gao,&nbsp
-                                        Xiaofeng Gao,&nbsp
-                                        Guihai Chen&nbsp
-                                        <br>
-                                        <em>International Conference on Parallel Processing (ICPP)</em>,&nbsp2019.&nbsp
-                                        <br>
-                                        <font color="gray">Distributed Systems; Metadata Management; Reinforcement
-                                            Learning.</font>
-                                        <br>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <hr class="soft">
+                    <article class="pub-card animate-in" style="--pub-accent: var(--pub-a)">
+                        <span class="pub-index" aria-hidden="true">01</span>
+                        <div class="pub-media">
+                            <a href="https://github.com/caoshiyi/K-Search" target="_blank" class="pub-media-inner"><img src="images/k-search.png" alt="K-Search framework overview: search tree with action selection, local refinement loop, and LLM-driven world model updates"></a>
+                        </div>
+                        <div class="pub-info">
+                            <h3 class="pub-title">K-Search: LLM Kernel Generation via Co-Evolving Intrinsic World Model</h3>
+                            <p class="pub-authors"><strong>Shiyi Cao</strong>, Ziming Mao, Joseph E. Gonzalez, Ion Stoica</p>
+                            <p class="pub-venue">arXiv preprint · 2026</p>
+                            <p class="pub-tags">GPU kernels · LLMs · World Model · Evolutionary search</p>
+                            <div class="pub-links">
+                                <a href="https://arxiv.org/abs/2602.19128" target="_blank" class="pub-link">Arxiv</a>
+                                <a href="https://github.com/caoshiyi/K-Search" target="_blank" rel="noopener noreferrer" class="pub-link pub-link-github" data-repo="caoshiyi/K-Search" aria-label="View repository on GitHub">
+                                    <svg class="pub-gh-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.586 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    <span class="pub-github-stars" aria-hidden="true"><svg class="pub-star-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="pub-github-star-count"></span></span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
 
 
 
-                    <!-- Projects -->
 
-                    <!-- <button style="border:0px transparent; background-color: transparent;outline:none;" type="button"
-                        class="collapsible" data-toggle="collapse" data-target="#content-projects" id="projects">
-                        <heading>System Hacking Experience</heading>
-                    </button>
-                    <div id="content-projects" class="collapse in">
-
-                        <table border=0 class="bg_colour"
-                            style="padding:20px;width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                            <tbody>
-
-                                <tr>
-                                    <td>
-                                        <a href="https://barrelfish.org/" target="_blank"> Barrelfish OS
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <a href="https://flexflow.ai/" target="_blank"> FlexFlow
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        Under Construction...
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <hr class="soft"> -->
-
-                    <!-- Experience -->
-
-                    <!-- <button style="border:0px transparent; background-color: transparent;outline:none;" type="button"
-                        class="collapsible" data-toggle="collapse" data-target="#content-experience" id="experience">
-                        <heading>Experience</heading>
-                    </button>
-                    <div id="content-experience" class="collapse in">
-
-                        <table border=0 class="bg_colour"
-                            style="padding:20px;width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-                            <tbody>
-
-                                <tr>
-                                    <td style="padding:10px;width:25%;vertical-align:middle">
-                                        <div class="one">
-                                            <img src='images/UTAustin_logo.png' width="120">
-                                        </div>
-                                    </td>
-                                    <td style="padding:10px;width:75%;vertical-align:top">
-                                        <papertitle style="color:gray"><big>Graduate Research Assistant</big>
-                                        </papertitle>
-                                        <papertitle><big> | Intelligent Data Exploration and Analysis Laboratory</big>
-                                        </papertitle>
-                                        <br>
-                                        Aug '21 - Present
-                                        <br>
-                                        <br>
-                                        <p>Working under the supervision of <a
-                                                href="https://www.ideal.ece.utexas.edu/ghosh/index.html"
-                                                target="_blank">Dr. Joydeep Ghosh</a> at the <a
-                                                href="https://www.ideal.ece.utexas.edu/" target="_blank"> IDEAL Lab</a>.
-                                        </p>
-                                    </td>
-                                </tr> 
-                            </tbody>
-                        </table>
-                    </div>
-                    <hr class="soft"> -->
-
-                    
-
-                </td>
-            </tr>
+                    <article class="pub-card animate-in" style="--pub-accent: var(--pub-h)">
+                        <span class="pub-index" aria-hidden="true">02</span>
+                        <div class="pub-media">
+                            <a href="https://novasky-ai.github.io/posts/sky-t1/" target="_blank" class="pub-media-inner"><img src="images/sky-t1-teaser.jpg" alt="Sky-T1 teaser: blue bird on a branch (NovaSky)"></a>
+                        </div>
+                        <div class="pub-info">
+                            <h3 class="pub-title">Sky-T1: Train your own O1 preview model within $450</h3>
+                            <p class="pub-authors">Dacheng Li*, <strong>Shiyi Cao*</strong>, Tyler Griggs, Shu Liu, Xiangxi Mo, Eric Tang, Sumanth Hegde, Kourosh Hakhamaneshi, Shishir G Patil, Matei Zaharia, Joseph E. Gonzalez, Ion Stoica</p>
+                            <p class="pub-venue">Findings of EMNLP 2025</p>
+                            <p class="pub-tags">Long chain-of-thought · SFT &amp; LoRA · Sky-T1 · Open reasoning models</p>
+                            <div class="pub-links">
+                                <a href="https://aclanthology.org/2025.findings-emnlp.866/" target="_blank" class="pub-link">Paper</a>
+                                <a href="https://novasky-ai.github.io/posts/sky-t1/" target="_blank" class="pub-link">Blog</a>
+                                <a href="https://github.com/NovaSky-AI/SkyThought" target="_blank" rel="noopener noreferrer" class="pub-link pub-link-github" data-repo="NovaSky-AI/SkyThought" aria-label="View repository on GitHub">
+                                    <svg class="pub-gh-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.586 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    <span class="pub-github-stars" aria-hidden="true"><svg class="pub-star-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="pub-github-star-count"></span></span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
 
 
-            <tr>
-                <td style="padding:0px">
-                    <div>
-                        <script type='text/javascript' id='clustrmaps'
-                            src='//cdn.clustrmaps.com/map_v2.js?cl=630860&w=300&t=n&d=ULHnr3XnPdcacHGHnp8ACKmuLajKykcjts-lxKWJT3s&co=585c5e&cmo=798205&cmn=ea133d&ct=b1aab2'></script>
-                    </div>
-                </td>
-            </tr>
 
-            <tr>
-                <td>
-                    <br>
-                    <br>
-                    <div>
-                        <p>This template is a modification to Jon Barron's <a href="https://jonbarron.info/"
-                                target="_blank">website</a> and Rishab Khincha's <a
-                                href="https://rishabkhincha.github.io/" target="_blank">website</a>.
-                        </p>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p></p>
-                </td>
-            </tr>
-    </table>
 
+                    <article class="pub-card animate-in" style="--pub-accent: var(--pub-i)">
+                        <span class="pub-index" aria-hidden="true">03</span>
+                        <div class="pub-media">
+                            <a href="https://novasky-ai.github.io/posts/S%2A/" target="_blank" class="pub-media-inner"><img src="images/sstar-overall-performance.png" alt="S* test-time scaling: LiveCodeBench performance baseline vs improvement across models"></a>
+                        </div>
+                        <div class="pub-info">
+                            <h3 class="pub-title">S*: Test-Time Scaling for Code Generation</h3>
+                            <p class="pub-authors">Dacheng Li*, <strong>Shiyi Cao*</strong>, Chengkun Cao, Xiuyu Li, Shangyin Tan, Kurt Keutzer, Jiarong Xing, Joseph E. Gonzalez, Ion Stoica</p>
+                            <p class="pub-venue">Findings of EMNLP 2025</p>
+                            <p class="pub-tags">Test-time scaling · Code generation · Hybrid selection · LiveCodeBench</p>
+                            <div class="pub-links">
+                                <a href="https://aclanthology.org/anthology-files/pdf/findings/2025.findings-emnlp.865.pdf" target="_blank" class="pub-link">Paper</a>
+                                <a href="https://novasky-ai.github.io/posts/S%2A/" target="_blank" class="pub-link">Blog</a>
+                                <a href="https://github.com/NovaSky-AI/SkyThought/tree/main/skythought/test-time-scaling" target="_blank" rel="noopener noreferrer" class="pub-link pub-link-github" data-repo="NovaSky-AI/SkyThought" aria-label="View repository on GitHub">
+                                    <svg class="pub-gh-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.586 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    <span class="pub-github-stars" aria-hidden="true"><svg class="pub-star-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="pub-github-star-count"></span></span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="pub-card animate-in" style="--pub-accent: var(--pub-b)">
+                        <span class="pub-index" aria-hidden="true">04</span>
+                        <div class="pub-media">
+                            <a href="images/CGOPipe-full.gif" class="pub-media-inner"><img src="images/CGOPipe-full.gif" alt="MoE-Lightning figure"></a>
+                        </div>
+                        <div class="pub-info">
+                            <h3 class="pub-title">MoE-Lightning: High-Throughput MoE Inference on Memory-constrained GPUs</h3>
+                            <p class="pub-authors"><strong>Shiyi Cao</strong>, Shu Liu, Tyler Griggs, Peter Schafhalter, Xiaoxuan Liu, Ying Sheng, Joseph E Gonzalez, Matei Zaharia, Ion Stoica</p>
+                            <p class="pub-venue">ASPLOS 2025</p>
+                            <p class="pub-tags">Mixture of Experts · LLM batch inference · CPU offloading</p>
+                            <div class="pub-links">
+                                <a href="https://dl.acm.org/doi/10.1145/3669940.3707267" target="_blank" class="pub-link">Paper</a>
+                                <a href="https://github.com/caoshiyi/artifacts" target="_blank" rel="noopener noreferrer" class="pub-link pub-link-github" data-repo="caoshiyi/artifacts" aria-label="View repository on GitHub">
+                                    <svg class="pub-gh-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.586 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    <span class="pub-github-stars" aria-hidden="true"><svg class="pub-star-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="pub-github-star-count"></span></span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+
+
+
+                    <article class="pub-card animate-in" style="--pub-accent: var(--pub-c)">
+                        <span class="pub-index" aria-hidden="true">05</span>
+                        <div class="pub-media">
+                            <a href="images/gpp_ex1.png" class="pub-media-inner"><img src="images/gpp_ex1.png" alt="GraphPipe figure"></a>
+                        </div>
+                        <div class="pub-info">
+                            <h3 class="pub-title">GraphPipe: Improving Performance and Scalability of DNN Training with Graph Pipeline Parallelism</h3>
+                            <p class="pub-authors">Byungsoo Jeon*, Mengdi Wu*, <strong>Shiyi Cao*</strong>, Sunghyun Kim*, Sunghyun Park, Neeraj Aggarwal, Colin Unger, Daiyaan Arfeen, Peiyuan Liao, Xupeng Miao, Mohammad Alizadeh, Gregory R. Ganger, Tianqi Chen, Zhihao Jia</p>
+                            <p class="pub-venue">ASPLOS 2025</p>
+                            <p class="pub-tags">Distributed training · Pipeline parallelism</p>
+                            <div class="pub-links">
+                                <a href="https://dl.acm.org/doi/10.1145/3669940.3707220" target="_blank" class="pub-link">Paper</a>
+                            </div>
+                        </div>
+                    </article>
+
+
+
+
+                    <article class="pub-card animate-in" style="--pub-accent: var(--pub-d)">
+                        <span class="pub-index" aria-hidden="true">06</span>
+                        <div class="pub-media">
+                            <a href="images/vtc.jpg" class="pub-media-inner"><img src="images/vtc.jpg" alt="Fairness in serving LLMs figure"></a>
+                        </div>
+                        <div class="pub-info">
+                            <h3 class="pub-title">Fairness in Serving Large Language Models</h3>
+                            <p class="pub-authors">Ying Sheng, <strong>Shiyi Cao</strong>, Dacheng Li, Banghua Zhu, Zhuohan Li, Danyang Zhuo, Joseph E Gonzalez, Ion Stoica</p>
+                            <p class="pub-venue">OSDI 2024</p>
+                            <p class="pub-tags">LLM serving · Fair scheduling</p>
+                            <div class="pub-links">
+                                <a href="https://www.usenix.org/conference/osdi24/presentation/sheng" target="_blank" class="pub-link">Paper</a>
+                            </div>
+                        </div>
+                    </article>
+
+
+
+
+                    <article class="pub-card animate-in" style="--pub-accent: var(--pub-e)">
+                        <span class="pub-index" aria-hidden="true">07</span>
+                        <div class="pub-media">
+                            <a href="images/slora.png" class="pub-media-inner"><img src="images/slora.png" alt="S-LoRA figure"></a>
+                        </div>
+                        <div class="pub-info">
+                            <h3 class="pub-title">S-LoRA: Serving Thousands of Concurrent LoRA Adapters</h3>
+                            <p class="pub-authors">Ying Sheng*, <strong>Shiyi Cao*</strong>, Dacheng Li, Coleman Hooper, Nicholas Lee, Shuo Yang, Christopher Chou, Banghua Zhu, Lianmin Zheng, Kurt Keutzer, Joseph E. Gonzalez, Ion Stoica</p>
+                            <p class="pub-venue">MLSys 2024</p>
+                            <p class="pub-tags">LLM inference · LoRA · Adapters · Memory management</p>
+                            <div class="pub-links">
+                                <a href="https://proceedings.mlsys.org/paper_files/paper/2024/file/906419cd502575b617cc489a1a696a67-Paper-Conference.pdf" target="_blank" class="pub-link">Paper</a>
+                                <a href="https://github.com/S-LoRA/S-LoRA" target="_blank" rel="noopener noreferrer" class="pub-link pub-link-github" data-repo="S-LoRA/S-LoRA" aria-label="View repository on GitHub">
+                                    <svg class="pub-gh-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.586 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    <span class="pub-github-stars" aria-hidden="true"><svg class="pub-star-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="pub-github-star-count"></span></span>
+                                </a>
+                                <a href="https://lmsys.org/blog/2023-11-15-slora/" target="_blank" class="pub-link">Blog</a>
+                            </div>
+                        </div>
+                    </article>
+
+
+
+
+                    <article class="pub-card animate-in" style="--pub-accent: var(--pub-f)">
+                        <span class="pub-index" aria-hidden="true">08</span>
+                        <div class="pub-media">
+                            <a href="images/spin.png" class="pub-media-inner"><img src="images/spin.png" alt="In-network compute figure"></a>
+                        </div>
+                        <div class="pub-info">
+                            <h3 class="pub-title">Accelerating Data Serialization/Deserialization Protocols with In-Network Compute</h3>
+                            <p class="pub-authors"><strong>Shiyi Cao</strong>, Salvatore Di Girolamo, Torsten Hoefler</p>
+                            <p class="pub-venue">Workshop on Exascale MPI, ExaMPI@SC 2022</p>
+                            <p class="pub-tags">SmartNICs · In-network compute · Data (de)serialization</p>
+                            <div class="pub-links">
+                                <a href="https://ieeexplore.ieee.org/document/10027020" target="_blank" class="pub-link">Paper</a>
+                                <a href="https://www.youtube.com/watch?v=zxtZOtX1jw4&list=PLerS07GSe_l56MQ-Sna34XdPeTy9H45Ah&index=2" target="_blank" class="pub-link">Video</a>
+                            </div>
+                        </div>
+                    </article>
+
+
+
+
+                    <article class="pub-card animate-in" style="--pub-accent: var(--pub-g)">
+                        <span class="pub-index" aria-hidden="true">09</span>
+                        <div class="pub-media">
+                            <a href="images/adam.png" class="pub-media-inner"><img src="images/adam.png" alt="AdaM figure"></a>
+                        </div>
+                        <div class="pub-info">
+                            <h3 class="pub-title">AdaM: An Adaptive Fine-Grained Scheme for Distributed Metadata Management</h3>
+                            <p class="pub-authors"><strong>Shiyi Cao</strong>, Yuanning Gao, Xiaofeng Gao, Guihai Chen</p>
+                            <p class="pub-venue">International Conference on Parallel Processing (ICPP) 2019</p>
+                            <p class="pub-tags">Distributed systems · Metadata management · Reinforcement learning</p>
+                            <div class="pub-links">
+                                <a href="https://dl.acm.org/doi/10.1145/3337821.3337822" target="_blank" class="pub-link">Paper</a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-talks" id="talks" aria-labelledby="talks-heading">
+        <div class="section-shell">
+            <header class="section-heading">
+                <h2 id="talks-heading" class="rail-title">
+                    <span class="rail-number">03</span>
+                    Talks
+                </h2>
+                <p class="rail-desc">Invited talks &amp; visits.</p>
+            </header>
+            <div class="section-body">
+                <ul class="talk-list">
+                    <li class="talk-item animate-in">
+                        <span class="talk-date">Feb &apos;26</span>
+                        <div class="talk-card">
+                            <p class="talk-text">Invited talk at the <a href="https://people.eecs.berkeley.edu/~jiantao/index.html" target="_blank">Jiaolab</a>, UC Berkeley, hosted by <a href="https://people.eecs.berkeley.edu/~jiantao/index.html" target="_blank">Prof. Jiantao Jiao</a>, on <a href="https://arxiv.org/abs/2602.19128" target="_blank">K-Search</a>.</p>
+                        </div>
+                    </li>
+                    <li class="talk-item animate-in">
+                        <span class="talk-date">Feb &apos;25</span>
+                        <div class="talk-card">
+                            <p class="talk-text">Invited talk at the <a href="https://slice.eecs.berkeley.edu/" target="_blank">SLICE Lab</a>, UC Berkeley, hosted by <a href="https://people.eecs.berkeley.edu/~ysshao/students.html" target="_blank">Prof. Sophia Shao</a>, on <a href="https://arxiv.org/abs/2411.11217" target="_blank">MoE-Lightning</a>.</p>
+                        </div>
+                    </li>
+                    <li class="talk-item animate-in">
+                        <span class="talk-date">Feb &apos;25</span>
+                        <div class="talk-card">
+                            <p class="talk-text">Invited talk at the <a href="https://sampl.cs.washington.edu/" target="_blank">SAMPL group</a>, University of Washington, hosted by <a href="https://expye.com/about" target="_blank">Zihao Ye</a>, on <a href="https://arxiv.org/abs/2411.11217" target="_blank">MoE-Lightning</a> and <a href="https://novasky-ai.github.io/posts/sky-t1/" target="_blank">Sky-T1</a>.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-glow"></div>
+        <div class="footer-shell">
+            <div class="footer-brand">
+                <span class="footer-name">Shiyi Cao</span>
+                <span class="footer-cn">曹诗怡</span>
+            </div>
+            <div class="footer-row">
+                <p class="footer-text">&copy; 2026 Shiyi Cao</p>
+                <div class="footer-links">
+                    <a href="mailto:shiyicao314@gmail.com" target="_blank">Email</a>
+                    <a href="https://github.com/caoshiyi" target="_blank">GitHub</a>
+                    <a href="https://scholar.google.com/citations?hl=en&authuser=1&user=NR59_v4AAAAJ" target="_blank">Scholar</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        html.removeAttribute('data-palette');
+        localStorage.removeItem('palette');
+
+        function setTheme(dark) {
+            html.setAttribute('data-theme', dark ? 'dark' : 'light');
+            localStorage.setItem('theme', dark ? 'dark' : 'light');
+        }
+
+        const saved = localStorage.getItem('theme');
+        if (saved) {
+            setTheme(saved === 'dark');
+        } else {
+            setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            setTheme(!isDark);
+        });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 40);
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+
+        document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const id = this.getAttribute('href');
+                if (id === '#') return;
+                const target = document.querySelector(id);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        (function initNewsArchive() {
+            const details = document.getElementById('news-archive');
+            const summary = document.getElementById('news-archive-summary');
+            const label = details?.querySelector('.news-archive-label');
+            const hint = details?.querySelector('.news-archive-hint');
+            if (!details || !summary || !label) return;
+
+            const collapsedLabel = 'Earlier highlights';
+            const expandedLabel = 'Hide earlier highlights';
+
+            function sync() {
+                const open = details.open;
+                label.textContent = open ? expandedLabel : collapsedLabel;
+                summary.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if (hint) hint.hidden = open;
+            }
+
+            details.addEventListener('toggle', sync);
+            sync();
+        })();
+
+        (async function loadPubGithubStars() {
+            function fmt(n) {
+                if (n >= 1000) return (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'k';
+                return String(n);
+            }
+            const links = document.querySelectorAll('a.pub-link-github[data-repo]');
+            if (!links.length) return;
+            const uniq = [...new Set([...links].map((a) => a.dataset.repo))];
+            const results = await Promise.all(
+                uniq.map(async (repo) => {
+                    const parts = repo.split('/');
+                    const owner = parts[0];
+                    const name = parts.slice(1).join('/');
+                    if (!owner || !name) return [repo, null];
+                    try {
+                        const res = await fetch(
+                            'https://api.github.com/repos/' +
+                                encodeURIComponent(owner) +
+                                '/' +
+                                encodeURIComponent(name)
+                        );
+                        if (!res.ok) return [repo, null];
+                        const data = await res.json();
+                        return [
+                            repo,
+                            typeof data.stargazers_count === 'number' ? data.stargazers_count : null,
+                        ];
+                    } catch {
+                        return [repo, null];
+                    }
+                })
+            );
+            const map = new Map(results);
+            links.forEach((a) => {
+                const count = map.get(a.dataset.repo);
+                const el = a.querySelector('.pub-github-star-count');
+                if (count != null && el) {
+                    el.textContent = fmt(count);
+                    a.classList.add('pub-github-stars-loaded');
+                    a.setAttribute('aria-label', 'GitHub repository, ' + count.toLocaleString() + ' stars');
+                }
+            });
+        })();
+    </script>
 </body>
-
 </html>
