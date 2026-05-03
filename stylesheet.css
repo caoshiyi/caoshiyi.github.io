@@ -590,12 +590,6 @@ html[data-theme="light"] .icon-moon,
 .timeline-track {
     position: relative;
     --timeline-pad-x: 0px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: stretch;
-    justify-content: center;
-    gap: 16px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -622,8 +616,22 @@ html[data-theme="light"] .icon-moon,
     );
 }
 
+/* In-flow row: full scroll width so the rail (::before/::after) moves with horizontal scroll. */
+.timeline-track-row {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: center;
+    gap: 16px;
+    width: max-content;
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
 /* Glow rail (horizontal, centered on track — cards alternate above / below) */
-.timeline-track::before {
+.timeline-track-row::before {
     content: '';
     position: absolute;
     left: var(--timeline-pad-x);
@@ -662,7 +670,7 @@ html[data-theme="light"] .icon-moon,
 }
 
 /* Traveling light along the rail (right → left) */
-.timeline-track::after {
+.timeline-track-row::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -706,7 +714,7 @@ html[data-theme="light"] .icon-moon,
     }
 }
 
-.timeline-track > .news-item {
+.timeline-track-row > .news-item {
     position: relative;
     z-index: 1;
     flex: 0 0 min(260px, 78vw);
@@ -721,12 +729,12 @@ html[data-theme="light"] .icon-moon,
     box-sizing: border-box;
 }
 
-.timeline-track > .news-item:nth-child(even) {
+.timeline-track-row > .news-item:nth-child(even) {
     flex-direction: column-reverse;
 }
 
 /* Milestone node on horizontal rail (column vertical center) */
-.timeline-track > .news-item::before {
+.timeline-track-row > .news-item::before {
     content: '';
     position: absolute;
     left: 50%;
@@ -749,7 +757,7 @@ html[data-theme="light"] .icon-moon,
     z-index: 3;
 }
 
-.timeline-track > .news-item.animate-in.visible::before {
+.timeline-track-row > .news-item.animate-in.visible::before {
     animation: timeline-node-pop-h 0.65s var(--ease-out) both;
 }
 
@@ -768,7 +776,7 @@ html[data-theme="light"] .icon-moon,
     }
 }
 
-.timeline-track > .news-item:hover::before {
+.timeline-track-row > .news-item:hover::before {
     transform: translate(-50%, -50%) scale(1.14);
     border-color: var(--accent);
     box-shadow:
@@ -776,7 +784,7 @@ html[data-theme="light"] .icon-moon,
         0 0 28px color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
-.timeline-track > .news-item .news-date {
+.timeline-track-row > .news-item .news-date {
     position: relative;
     z-index: 2;
     align-self: center;
@@ -784,15 +792,15 @@ html[data-theme="light"] .icon-moon,
     margin: 0;
 }
 
-.timeline-track > .news-item:hover .news-date {
+.timeline-track-row > .news-item:hover .news-date {
     box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent);
 }
 
-.timeline-track > .news-item .news-card .news-text {
+.timeline-track-row > .news-item .news-card .news-text {
     text-align: center;
 }
 
-.timeline-track > .news-item:nth-child(odd) .news-card::after {
+.timeline-track-row > .news-item:nth-child(odd) .news-card::after {
     content: '';
     position: absolute;
     left: 50%;
@@ -811,7 +819,7 @@ html[data-theme="light"] .icon-moon,
     transition: opacity 0.3s ease, width 0.3s ease;
 }
 
-.timeline-track > .news-item:nth-child(even) .news-card::after {
+.timeline-track-row > .news-item:nth-child(even) .news-card::after {
     content: '';
     position: absolute;
     left: 50%;
@@ -831,17 +839,17 @@ html[data-theme="light"] .icon-moon,
     transition: opacity 0.3s ease, width 0.3s ease;
 }
 
-.timeline-track > .news-item:hover .news-card::after {
+.timeline-track-row > .news-item:hover .news-card::after {
     opacity: 0.85;
 }
 
-.timeline-track > .news-item:hover .news-card {
+.timeline-track-row > .news-item:hover .news-card {
     border-color: color-mix(in srgb, var(--accent) 25%, var(--border));
     box-shadow: var(--shadow-md), 0 0 32px color-mix(in srgb, var(--accent) 8%, transparent);
     transform: translateY(-3px);
 }
 
-.timeline-track > .news-item:nth-child(even):hover .news-card {
+.timeline-track-row > .news-item:nth-child(even):hover .news-card {
     transform: translateY(3px);
 }
 
@@ -1346,9 +1354,9 @@ a.pub-media-placeholder:hover {
     transform: translateY(0);
 }
 
-.timeline-track > .news-item.animate-in:nth-child(1) { transition-delay: 0ms; }
-.timeline-track > .news-item.animate-in:nth-child(2) { transition-delay: 40ms; }
-.timeline-track > .news-item.animate-in:nth-child(3) { transition-delay: 80ms; }
+.timeline-track-row > .news-item.animate-in:nth-child(1) { transition-delay: 0ms; }
+.timeline-track-row > .news-item.animate-in:nth-child(2) { transition-delay: 40ms; }
+.timeline-track-row > .news-item.animate-in:nth-child(3) { transition-delay: 80ms; }
 
 .talk-item.animate-in:nth-child(1) { transition-delay: 0ms; }
 .talk-item.animate-in:nth-child(2) { transition-delay: 55ms; }
@@ -1387,14 +1395,14 @@ a.pub-media-placeholder:hover {
     .pub-card:hover a.pub-media-placeholder {
         transform: none;
     }
-    .timeline-track::before,
-    .timeline-track::after {
+    .timeline-track-row::before,
+    .timeline-track-row::after {
         animation: none;
     }
-    .timeline-track > .news-item.animate-in.visible::before {
+    .timeline-track-row > .news-item.animate-in.visible::before {
         animation: none;
     }
-    .timeline-track > .news-item:hover::before {
+    .timeline-track-row > .news-item:hover::before {
         transform: translate(-50%, -50%);
     }
 }
@@ -1531,14 +1539,17 @@ a.pub-media-placeholder:hover {
 
     .timeline-track {
         --timeline-pad-x: 0px;
-        gap: 12px;
         padding: 30px 0 28px;
         margin-left: 0;
         margin-right: 0;
+    }
+
+    .timeline-track-row {
+        gap: 12px;
         justify-content: flex-start;
     }
 
-    .timeline-track > .news-item {
+    .timeline-track-row > .news-item {
         flex: 0 0 min(236px, 86vw);
         min-height: 12.25rem;
         gap: clamp(16px, 3.5vw, 26px);
