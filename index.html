@@ -27,7 +27,7 @@
         gtag('config', 'UA-102766803-2');
     </script>
     <meta name="author" content="Shiyi Cao">
-    <meta name="description" content="Shiyi Cao | PhD @ UC Berkeley | MS @ ETH Zürich | BS @ SJTU">
+    <meta name="description" content="Shiyi Cao | PhD @ UC Berkeley | Evolving Agent Teams, NeurIPS 2026 | MS @ ETH Zürich | BS @ SJTU">
     <link rel="icon" type="image/png" href="images/logo%203.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,7 +75,7 @@
                         <span class="hero-name-cn">曹诗怡</span>
                     </h1>
                     <p class="hero-affil">
-                        I am a third-year Ph.D. student at <a href="https://eecs.berkeley.edu/" target="_blank">UC Berkeley EECS</a>, advised by
+                        I am a fourth-year Ph.D. student at <a href="https://eecs.berkeley.edu/" target="_blank">UC Berkeley EECS</a>, advised by
                         <a href="https://people.eecs.berkeley.edu/~istoica/" target="_blank">Ion Stoica</a> and
                         <a href="https://people.eecs.berkeley.edu/~jegonzal/" target="_blank">Joseph Gonzalez</a>, affiliated with
                         <a href="https://sky.cs.berkeley.edu/" target="_blank">Sky Computing Lab</a> and
@@ -87,7 +87,7 @@
                         Prior to joining grad school, I had a great time at <a href="https://www.sjtu.edu.cn/" target="_blank">Shanghai Jiao Tong University</a> where I earned a bachelor's degree in Computer Science.
                     </p>
                     <p class="hero-bio">
-                        I am mainly interested in <strong>automated</strong> optimization of ML computations on large-scale <strong>heterogeneous hardwares</strong>.
+                        I am mainly interested in <strong>automated</strong> optimization of ML systems on large-scale <strong>heterogeneous hardware</strong>: GPU kernels, inference, and the agent teams that search for those optimizations.
                     </p>
                 <div class="hero-links" aria-label="Social and contact links">
                         <a href="mailto:shiyicao314@gmail.com" class="link-pill" target="_blank">
@@ -134,6 +134,12 @@
                     <div class="timeline-track">
                         <div class="timeline-track-row">
                             <div class="news-item animate-in">
+                                <span class="news-date">Oct &apos;26</span>
+                                <div class="news-card">
+                                    <span class="news-text">Excited to release <a href="https://arxiv.org/abs/2610.36848" target="_blank">Evolving Agent Teams</a> (NeurIPS 2026), with <a href="https://github.com/caoshiyi/EAT" target="_blank">code</a>, tasks, and evolution traces.</span>
+                                </div>
+                            </div>
+                            <div class="news-item animate-in">
                                 <span class="news-date">Feb &apos;26</span>
                                 <div class="news-card">
                                     <span class="news-text">Excited to release <a href="https://arxiv.org/abs/2602.19128" target="_blank">K-Search</a> for automated GPU kernel generation!</span>
@@ -145,20 +151,20 @@
                                     <span class="news-text">Excited to receive <a href="https://eecs.berkeley.edu/news/eecs-students-drive-ai-innovation-as-amazon-phd-fellows/" target="_blank">Amazon AI Fellowship</a>!</span>
                                 </div>
                             </div>
-                            <div class="news-item animate-in">
-                                <span class="news-date">Aug &apos;25</span>
-                                <div class="news-card">
-                                    <span class="news-text">Two papers (<a href="https://aclanthology.org/anthology-files/anthology-files/pdf/findings/2025.findings.emnlp.866.pdf" target="_blank">Sky-T1</a> and <a href="https://arxiv.org/abs/2502.14382" target="_blank">S*</a>) are accepted as EMNLP &apos;25 Findings!</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <details class="news-archive" id="news-archive">
                         <summary class="news-archive-summary" id="news-archive-summary" aria-expanded="false" aria-controls="news-archive-panel">
                             <span class="news-archive-label">Earlier highlights</span>
-                            <span class="news-archive-hint" aria-hidden="true">5 more</span>
+                            <span class="news-archive-hint" aria-hidden="true">6 more</span>
                         </summary>
                         <div class="news-archive-inner" id="news-archive-panel" role="region" aria-label="Earlier news items">
+                            <div class="news-item">
+                                <span class="news-date">Aug &apos;25</span>
+                                <div class="news-card">
+                                    <span class="news-text">Two papers (<a href="https://aclanthology.org/anthology-files/anthology-files/pdf/findings/2025.findings.emnlp.866.pdf" target="_blank">Sky-T1</a> and <a href="https://arxiv.org/abs/2502.14382" target="_blank">S*</a>) are accepted as EMNLP &apos;25 Findings!</span>
+                                </div>
+                            </div>
                             <div class="news-item">
                                 <span class="news-date">May &apos;25</span>
                                 <div class="news-card">
@@ -208,8 +214,29 @@
             <div class="section-body">
                 <div class="pub-list">
 
-                    <article class="pub-card animate-in" style="--pub-accent: var(--pub-a)">
+                    <article class="pub-card animate-in" style="--pub-accent: var(--accent)">
                         <span class="pub-index" aria-hidden="true">01</span>
+                        <div class="pub-media">
+                            <a href="https://github.com/caoshiyi/EAT" target="_blank" class="pub-media-inner"><img src="images/eat_curves.gif" alt="EAT score curves on AMD and NVIDIA kernels, Mac serving, and RoboDojo"></a>
+                        </div>
+                        <div class="pub-info">
+                            <h3 class="pub-title">Evolving Agent Teams</h3>
+                            <p class="pub-authors"><strong>Shiyi Cao</strong>, Ziming Mao, Dacheng Li, Joseph E. Gonzalez, Ion Stoica</p>
+                            <p class="pub-venue">NeurIPS 2026</p>
+                            <p class="pub-tags">Agent teams · GPU kernels · Long-running optimization</p>
+                            <div class="pub-links">
+                                <a href="https://arxiv.org/abs/2610.36848" target="_blank" class="pub-link">Paper</a>
+                                <a href="https://github.com/caoshiyi/EAT" target="_blank" rel="noopener noreferrer" class="pub-link pub-link-github" data-repo="caoshiyi/EAT" aria-label="View repository on GitHub">
+                                    <svg class="pub-gh-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.586 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    <span class="pub-github-stars" aria-hidden="true"><svg class="pub-star-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="pub-github-star-count"></span></span>
+                                </a>
+                                <a href="https://huggingface.co/datasets/eva98/eat-gym" target="_blank" class="pub-link">Gym</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="pub-card animate-in" style="--pub-accent: var(--pub-a)">
+                        <span class="pub-index" aria-hidden="true">02</span>
                         <div class="pub-media">
                             <a href="https://github.com/caoshiyi/K-Search" target="_blank" class="pub-media-inner"><img src="images/k-search.png" alt="K-Search framework overview: search tree with action selection, local refinement loop, and LLM-driven world model updates"></a>
                         </div>
@@ -232,7 +259,7 @@
 
 
                     <article class="pub-card animate-in" style="--pub-accent: var(--pub-h)">
-                        <span class="pub-index" aria-hidden="true">02</span>
+                        <span class="pub-index" aria-hidden="true">03</span>
                         <div class="pub-media">
                             <a href="https://novasky-ai.github.io/posts/sky-t1/" target="_blank" class="pub-media-inner"><img src="images/sky-t1-teaser.jpg" alt="Sky-T1 teaser: blue bird on a branch (NovaSky)"></a>
                         </div>
@@ -256,7 +283,7 @@
 
 
                     <article class="pub-card animate-in" style="--pub-accent: var(--pub-i)">
-                        <span class="pub-index" aria-hidden="true">03</span>
+                        <span class="pub-index" aria-hidden="true">04</span>
                         <div class="pub-media">
                             <a href="https://novasky-ai.github.io/posts/S%2A/" target="_blank" class="pub-media-inner"><img src="images/sstar-overall-performance.png" alt="S* test-time scaling: LiveCodeBench performance baseline vs improvement across models"></a>
                         </div>
@@ -277,7 +304,7 @@
                     </article>
 
                     <article class="pub-card animate-in" style="--pub-accent: var(--pub-b)">
-                        <span class="pub-index" aria-hidden="true">04</span>
+                        <span class="pub-index" aria-hidden="true">05</span>
                         <div class="pub-media">
                             <a href="images/CGOPipe-full.gif" class="pub-media-inner"><img src="images/CGOPipe-full.gif" alt="MoE-Lightning figure"></a>
                         </div>
@@ -300,7 +327,7 @@
 
 
                     <article class="pub-card animate-in" style="--pub-accent: var(--pub-c)">
-                        <span class="pub-index" aria-hidden="true">05</span>
+                        <span class="pub-index" aria-hidden="true">06</span>
                         <div class="pub-media">
                             <a href="images/gpp_ex1.png" class="pub-media-inner"><img src="images/gpp_ex1.png" alt="GraphPipe figure"></a>
                         </div>
@@ -319,7 +346,7 @@
 
 
                     <article class="pub-card animate-in" style="--pub-accent: var(--pub-d)">
-                        <span class="pub-index" aria-hidden="true">06</span>
+                        <span class="pub-index" aria-hidden="true">07</span>
                         <div class="pub-media">
                             <a href="images/vtc.jpg" class="pub-media-inner"><img src="images/vtc.jpg" alt="Fairness in serving LLMs figure"></a>
                         </div>
@@ -338,7 +365,7 @@
 
 
                     <article class="pub-card animate-in" style="--pub-accent: var(--pub-e)">
-                        <span class="pub-index" aria-hidden="true">07</span>
+                        <span class="pub-index" aria-hidden="true">08</span>
                         <div class="pub-media">
                             <a href="images/slora.png" class="pub-media-inner"><img src="images/slora.png" alt="S-LoRA figure"></a>
                         </div>
@@ -362,7 +389,7 @@
 
 
                     <article class="pub-card animate-in" style="--pub-accent: var(--pub-f)">
-                        <span class="pub-index" aria-hidden="true">08</span>
+                        <span class="pub-index" aria-hidden="true">09</span>
                         <div class="pub-media">
                             <a href="images/spin.png" class="pub-media-inner"><img src="images/spin.png" alt="In-network compute figure"></a>
                         </div>
@@ -382,7 +409,7 @@
 
 
                     <article class="pub-card animate-in" style="--pub-accent: var(--pub-g)">
-                        <span class="pub-index" aria-hidden="true">09</span>
+                        <span class="pub-index" aria-hidden="true">10</span>
                         <div class="pub-media">
                             <a href="images/adam.png" class="pub-media-inner"><img src="images/adam.png" alt="AdaM figure"></a>
                         </div>
@@ -413,6 +440,28 @@
             </header>
             <div class="section-body">
                 <div class="oss-grid">
+                    <article class="oss-card oss-card--feature animate-in">
+                        <div class="oss-card-brand">
+                            <a href="https://github.com/caoshiyi/EAT" target="_blank" rel="noopener noreferrer" class="oss-card-logo-wrap" aria-label="EAT on GitHub">
+                                <img src="images/eat_lockup_light.png" alt="EAT" class="oss-card-logo eat-lockup-light" width="200" height="68" loading="lazy" decoding="async">
+                                <img src="images/eat_lockup_dark.png" alt="" class="oss-card-logo eat-lockup-dark" width="200" height="68" loading="lazy" decoding="async">
+                            </a>
+                        </div>
+                        <div class="oss-card-body">
+                            <h3 class="oss-card-title">Evolving Agent Teams</h3>
+                            <p class="pub-authors"><strong>Shiyi Cao</strong>, Ziming Mao, Dacheng Li, Joseph E. Gonzalez, Ion Stoica</p>
+                            <p class="pub-venue">NeurIPS 2026</p>
+                            <p class="pub-tags">A supervisor diagnoses why a team of coding agents has stalled, then rebuilds the team. The same loop writes GPU kernels, a serving engine, and a robot policy.</p>
+                            <div class="pub-links oss-card-links">
+                                <a href="https://arxiv.org/abs/2610.36848" target="_blank" rel="noopener noreferrer" class="pub-link">Paper</a>
+                                <a href="https://github.com/caoshiyi/EAT" target="_blank" rel="noopener noreferrer" class="pub-link pub-link-github" data-repo="caoshiyi/EAT" aria-label="EAT on GitHub">
+                                    <svg class="pub-gh-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.586 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                    <span class="pub-github-stars" aria-hidden="true"><svg class="pub-star-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="pub-github-star-count"></span></span>
+                                </a>
+                                <a href="https://huggingface.co/datasets/eva98/eat-evolution-traces" target="_blank" rel="noopener noreferrer" class="pub-link">Traces</a>
+                            </div>
+                        </div>
+                    </article>
                     <article class="oss-card animate-in">
                         <div class="oss-card-brand">
                             <a href="https://github.com/sgl-project/sglang" target="_blank" rel="noopener noreferrer" class="oss-card-logo-wrap" aria-label="SGLang on GitHub">
