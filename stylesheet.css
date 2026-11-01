@@ -1086,22 +1086,6 @@ html[data-theme="light"] .icon-moon,
     margin: 0 auto;
 }
 
-.oss-card--feature {
-    grid-column: 1 / -1;
-}
-
-.eat-lockup-dark {
-    display: none;
-}
-
-html[data-theme="dark"] .eat-lockup-light {
-    display: none;
-}
-
-html[data-theme="dark"] .eat-lockup-dark {
-    display: block;
-}
-
 .oss-card {
     --pub-accent: var(--accent);
     display: flex;
@@ -1521,7 +1505,6 @@ a.pub-media-placeholder:hover {
 
 .oss-card.animate-in:nth-child(1) { transition-delay: 0ms; }
 .oss-card.animate-in:nth-child(2) { transition-delay: 55ms; }
-.oss-card.animate-in:nth-child(3) { transition-delay: 110ms; }
 
 .pub-card.animate-in:nth-child(1) { transition-delay: 0ms; }
 .pub-card.animate-in:nth-child(2) { transition-delay: 70ms; }
@@ -1532,7 +1515,6 @@ a.pub-media-placeholder:hover {
 .pub-card.animate-in:nth-child(7) { transition-delay: 420ms; }
 .pub-card.animate-in:nth-child(8) { transition-delay: 490ms; }
 .pub-card.animate-in:nth-child(9) { transition-delay: 560ms; }
-.pub-card.animate-in:nth-child(10) { transition-delay: 630ms; }
 
 /* ============================================
    Reduced motion
