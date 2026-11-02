@@ -706,6 +706,9 @@ html:not([data-theme="dark"]) .icon-sun { display: none; }
     border-radius: 4px;
 }
 .post-body img { margin: 1.2em 0; border-radius: 10px; }
+.post-body figure { margin: 1.6em 0; }
+.post-body figure img { display: block; width: 100%; height: auto; margin: 0; }
+.post-body figcaption { margin-top: 8px; font-size: 0.85rem; line-height: 1.5; color: var(--muted); }
 
 /* Footer */
 .footer {
