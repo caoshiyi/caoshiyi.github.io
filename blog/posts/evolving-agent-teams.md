@@ -94,7 +94,7 @@ What I found most interesting was how often the supervisor changed the way the w
 
 The final engine serves the recorded sessions 3.32× faster than the naive engine and decodes at 30.3 tokens/s in MLX 4-bit, against 13.4.
 
-We then ran the engine on a GGUF file and a newer Mac, an M5 Pro with 48 GB, against Strata, an existing engine for the same model, on the same file and at the same peak memory (about 37 GiB). Prefill is about 3.3× faster at every prompt length from 4K to 250K tokens, and decode is 1.22× faster after a short prompt; after a 250K-token prompt the two decode at about the same speed. With Claude Code running on the local model, a small CSV feature with tests takes 233 seconds on average against Strata's 386.
+We then ran the engine on a GGUF file and a newer Mac, an M5 Pro with 48 GB, against Strata, an existing engine for the same model, on the same file and at the same peak memory (about 37 GiB), even though our engine keeps the KV cache in bf16 while Strata quantizes it to int8. Prefill is about 3.3× faster at every prompt length from 4K to 250K tokens, and decode is 1.22× faster after a short prompt; after a 250K-token prompt the two decode at about the same speed. With Claude Code running on the local model, a small CSV feature with tests takes 233 seconds on average against Strata's 386.
 
 ![Qwen3.8-Flash-Next on 48 GB Macs: EAT's engine against Strata at equal memory on an M5 Pro, and against the naive engine on an M4 Pro.](../images/blog/eat/eat_mac_serving.png)
 
