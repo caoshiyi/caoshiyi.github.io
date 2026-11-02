@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handing the design to the agents · Shiyi Cao</title>
+    <meta name="author" content="Shiyi Cao">
+    <meta name="description" content="How my approach to long-running optimization with LLMs went from harnesses designed by people, to agentic loops, to agent teams I designed by hand, to a supervisor agent that designs the team itself, and what that looked like on four very different tasks.">
+    <link rel="icon" type="image/png" href="../images/logo%203.png">
+    <link rel="stylesheet" href="../stylesheet.css?v=7">
+    <link rel="alternate" type="application/rss+xml" title="Shiyi Cao" href="../blog/feed.xml">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Great+Vibes&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+
+    <script>
+        (function () {
+            var html = document.documentElement;
+            var saved = null;
+            try { saved = localStorage.getItem("theme"); } catch (e) {}
+            var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+            var dark = saved ? saved === "dark" : prefersDark;
+            html.setAttribute("data-theme", dark ? "dark" : "light");
+        })();
+    </script>
+
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="brand" href="../index.html">Shiyi Cao</a>
+            <div class="nav-links">
+                <a href="../index.html#research">Research</a>
+                <a href="../index.html#news">News</a>
+                <a href="../index.html#publications">Publications</a>
+                <a href="../index.html#open-source">Open source</a>
+                <a href="../index.html#talks">Talks</a>
+                <a href="../blog/">Blog</a>
+            </div>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <article class="post">
+        <p class="post-kicker"><a href="index.html">Blog</a></p>
+        <h1>Handing the design to the agents</h1>
+        <time datetime="2026-11-02">Nov 2, 2026</time>
+        <div class="post-body">
+<p>More and more, we point LLM agents at problems that do not have an end. Make this system faster. Make this policy succeed more often. Push this score as high as it will go. There is no final answer to submit, only a metric and a budget, and the agent&#x27;s job is to keep improving for hours or days.</p>
+<p>This post is about how my approach to these problems changed. It went through four stages, and at each one I handed more of the design to the agents: first a harness I designed around the LLM, then a single agent running its own loop, then a team of agents whose roles I designed, and finally an agent that designs the team. Each stage worked better than the last and failed in a way that pointed to the next. Where I ended up is <a href="https://arxiv.org/abs/2610.36848">Evolving Agent Teams (EAT)</a>: a supervisor agent that watches a team of agents, diagnoses why it stalled, and redesigns the team. At the end I describe four tasks we ran it on: a robot policy, a serving engine on a Mac, and the same attention kernel on two different GPUs.</p>
+<p>Many of the examples below come from GPU kernels, because that is where I started and where the failures were easiest to see. The lessons are not about kernels.</p>
+<figure><img src="../images/blog/eat/eat_curves.gif" alt="Official score at the end of every iteration on the four EAT runs described below." loading="lazy"><figcaption>Official score at the end of every iteration on the four EAT runs described below.</figcaption></figure>
+<h2>First: a harness designed by people</h2>
+<p>The first wave of LLM optimizers put the LLM inside a loop that a person designed. <a href="https://www.nature.com/articles/s41586-023-06924-6">FunSearch</a>, <a href="https://arxiv.org/abs/2506.13131">AlphaEvolve</a> and its open-source counterpart <a href="https://github.com/algorithmicsuperintelligence/openevolve">OpenEvolve</a> keep a population of programs and use the LLM to mutate them; <a href="https://arxiv.org/abs/2309.03409">OPRO</a> and <a href="https://arxiv.org/abs/2507.19457">GEPA</a> do something similar for prompts. The person decides the steps (propose, implement, evaluate, select) and the LLM fills them in. My own <a href="https://arxiv.org/abs/2602.19128">K-Search</a> (<a href="https://github.com/caoshiyi/K-Search">code</a>) was in this family. In K-Search the LLM also maintains a co-evolving &quot;world model&quot;: a structured tree of hypotheses about what limits the current solution, which alternatives exist, and which have been tried, with planning (choosing what to try next) decoupled from implementation (writing the code). We applied it to GPU kernel optimization, and on a hard attention kernel from DeepSeek-V3 it reached 0.61× of the expert-written kernel, the best result at the time.</p>
+<p>What stayed with me was how it stopped. On that kernel, the fast design required a hardware feature that is notoriously hard to get correct, and every run settled on an easier design with a lower ceiling. The right idea was in the world model. What the system could not do was decide that the next step should be a long, frustrating debugging effort rather than another round of planning and implementing. The loop was mine, so the only moves available were the ones I had built in.</p>
+<h2>Then: an agentic loop</h2>
+<p>Soon after, coding agents became good enough to run the loop themselves. <a href="https://arxiv.org/abs/2405.15793">SWE-agent</a> had already shown that an agent with the right tools could work through a real repository; with <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a>, or a setup like Karpathy&#x27;s <a href="https://github.com/karpathy/autoresearch">autoresearch</a>, where agents run training experiments on their own, a single agent with a good task description decides what to read, what to try, when to measure and what to keep, for hours at a time. It does most of what a hand-built harness does, with far more flexibility: if the next step should be reading documentation or writing a test, it can just do that.</p>
+<p>It also showed the same failure, more clearly. Agents drift toward what they can make work. Faced with a direction that is promising but painful, a strong agent tries it, hits a few failures, and quietly switches to something easier, then spends the rest of its budget polishing that. It makes progress the whole time. Every step is locally reasonable. Nothing in the loop ever asks whether the current direction is still worth pursuing, because the only one who could ask is the agent doing the work.</p>
+<h2>Then: a team I designed</h2>
+<p>The moment that moved me to teams came while I was trying to rebuild K-Search on top of Claude Code. I asked it to create a team of two agents (Claude Code now supports this directly as <a href="https://code.claude.com/docs/en/agent-teams">agent teams</a>), an Implementer and a Planner, and to implement FlashInfer&#x27;s MLA paged-decode CUDA kernel, the same DeepSeek attention kernel. The Implementer spent about twenty turns writing tests and debugging its use of wgmma, the hardware feature that had stopped K-Search, and kept getting stuck. The Planner noticed the stagnation and, on its own decision, went off to read the CUTLASS documentation carefully, found the bug and suggested the fix. The Implementer applied it and it worked immediately.</p>
+<p>That was exactly the step K-Search could not take, and nobody had told the Planner to take it. A second agent, standing outside the work, could see that the work was stuck.</p>
+<p>Hand-designed teams were not a new idea. <a href="https://arxiv.org/abs/2307.07924">ChatDev</a> and <a href="https://arxiv.org/abs/2308.00352">MetaGPT</a> staff a virtual software company with a CEO, programmers, reviewers and testers; <a href="https://arxiv.org/abs/2308.08155">AutoGen</a> made it easy to wire agents into conversations; Anthropic&#x27;s <a href="https://www.anthropic.com/engineering/built-multi-agent-research-system">multi-agent research system</a> has a lead agent that plans and spawns subagents to search in parallel. In all of them, a person decides which roles exist.</p>
+<p>So I designed a bigger team. Four roles anyone in the field would recognize: a planner, a researcher, an implementer and a profiler, each its own agent with its own mandate, coordinating through shared files and messages. It felt like the right structure, and it started slower than a single agent.</p>
+<p>One episode explains most of it. The team spent a long time on a bug where data was laid out in memory in the wrong format. Every piece of information needed to find it was in the team: the researcher knew the required format, and the implementer had the code. But each role answered the questions it was asked. They exchanged messages like &quot;LBO=16, confirm?&quot;, agreed with each other, and looked for the bug elsewhere. Nobody opened the implementer&#x27;s file and compared it with the spec, although every agent could. A single agent holding both would have seen it immediately. In the two-agent team, the Planner had stepped outside its role; with four sharper mandates, nobody did.</p>
+<p>That changed how I think about roles. They do not only divide work; they divide attention. A fixed set of roles is a bet about which boundaries the problem will never cross, and hard problems cross them constantly.</p>
+<p>They also change over time. Long optimization runs move through phases: first get anything working, then find what actually limits it, then often rethink the design, then tune. A debugger is essential in the first phase and useless in the last. A profiler&#x27;s analysis is valuable until the design changes, and then all of it is stale. The team that fits one phase is wrong for the next.</p>
+<p>My natural reaction was to look at each failure and redesign the roles: add a debugger here, someone to check the code against the spec there, a profiler once the design settles. At some point it became clear that this redesign loop was the work that mattered most. And the Planner had already shown that an agent could notice when a team is stuck; the next step was to let an agent decide what the team should become.</p>
+<h2>Now: let an agent design the team</h2>
+<p>EAT gives that job to a <strong>supervisor</strong> agent that never touches the solution. When a team finishes, or on a periodic check, the supervisor reads the team&#x27;s transcripts and scores, writes down why progress stalled, and designs the next team: which roles exist and what each one owns, how they coordinate (in sequence, in parallel on separate branches, or both), and how knowledge gets recorded. There are no predefined roles; every role in every run was invented for the situation at hand. A <strong>persistent file system</strong> carries what earlier teams learned: a learnings document, the supervisor&#x27;s evolution history, and every team&#x27;s artifacts.</p>
+<p>Others have also let an LLM shape the system around the work. <a href="https://arxiv.org/abs/2310.02170">DyLAN</a> picks agents from a hand-written pool of roles, and <a href="https://arxiv.org/abs/2308.10848">AgentVerse</a> regenerates its group each round. <a href="https://arxiv.org/abs/2408.08435">ADAS</a> has a meta-agent search for a better agent design, and <a href="https://arxiv.org/abs/2603.28052">Meta-Harness</a> has a coding agent rewrite the harness around a fixed model. The difference in EAT is that the redesign happens inside one long run: the team is rebuilt for the phase the work is in, and what earlier teams learned is carried forward rather than thrown away.</p>
+<figure><img src="../images/blog/eat/eat_overview.png" alt="The supervisor evolves the team; the team executes; the file system persists across teams." loading="lazy"><figcaption>The supervisor evolves the team; the team executes; the file system persists across teams.</figcaption></figure>
+<p>The supervisor&#x27;s diagnoses are what make this work, and they are refreshingly concrete. A few we saw repeatedly:</p>
+<ul><li><strong>Drift.</strong> A single agent was abandoning a hard constraint whenever it became inconvenient. The supervisor added a &quot;disciplinarian&quot; whose only job was to reject changes that broke the constraint or changed more than one thing at a time.</li><li><strong>Blocking failures.</strong> Three teams in a row failed on the same sub-problem, and each failure stalled everything else. The supervisor split the work: one agent may only debug that piece in isolation, and another may not touch it while improving everything else.</li><li><strong>Lost knowledge.</strong> A key recommendation from an earlier team was ignored by the next three, because it lived in that team&#x27;s report rather than in the shared notes. The supervisor created a knowledge integrator and a synthesis document that every later team had to read.</li><li><strong>Bad measurements.</strong> A team had been evaluating its own ideas under different conditions from the real eval. The supervisor created an auditor to fix the measurement and re-open what had been wrongly rejected.</li></ul>
+<p>On the attention kernel where K-Search and my hand-designed team had stalled, the evolving team reached 0.74× within the paper&#x27;s budget, against 0.31× for the fixed four-role team, and with more budget it went past the production expert kernel.</p>
+<h2>How multiple agents help with optimization</h2>
+<p>Looking back, I think multi-agent setups help long-running optimization for a few specific reasons, and none of them is simply &quot;more compute&quot;.</p>
+<ul><li><strong>Depth of context.</strong> One agent that implements, measures and researches splits its attention across all three. A role that only designs measurements, or only reasons about the overall design, goes much deeper.</li><li><strong>Isolation.</strong> Some work needs to fail safely. An agent allowed to chase a risky idea on its own branch can spend hours on a dead end without blocking anyone, and a dead end confirmed conclusively is worth something.</li><li><strong>Independent checking.</strong> A challenger that questions a claimed ceiling, or an auditor that questions the measurement itself, catches exactly what the agent doing the work is least likely to catch.</li><li><strong>Someone who owns the plan.</strong> Findings pile up. Writing them down is not enough; someone has to turn them into the next plan.</li></ul>
+<p>All of these depend on having the right roles at the right moment, which is exactly what a fixed team cannot give you. The structure has to come from outside the work, and it has to keep changing. An agent absorbed in the problem is rarely in a position to notice that the team around it should look different.</p>
+<p>It is not free, and it does not always win. On one of the tasks below, a single agent kept up with the team at the same budget; I come back to that.</p>
+<h2>Four tasks</h2>
+<p>We ran EAT on four new settings with newer models, the same supervisor prompt and no predefined roles. They have little in common except a score and a budget. Each was a single long run, so they are case studies rather than controlled comparisons, but they are where I learned the most.</p>
+<h3>A robot policy for RoboDojo</h3>
+<p>RoboDojo has 42 dual-arm manipulation tasks in simulation, scored from 0 to 100 across generalization, memory, precision, long-horizon and open-ended skills. The team edited a Python controller with a skill module per task. At run time the policy can call a frozen vision-language-action model (π0.5) and an LLM (at most 20 calls per episode), from three RGB cameras, joint states and the instruction. No model training is allowed.</p>
+<p>We were careful about leakage. Agents developed on one random seed; two held-out seeds were evaluated only by us, and the agents never saw those scores. Their network access was limited to the model API and the evaluation fleet, and other leaderboard entries&#x27; code was removed from the machines. The first 36 iterations optimized a 10-task subset, and the rest used all 42. Everything ran on Claude Sonnet 5.5, for $472 through iteration 50.</p>
+<p>The final policy scores 62.1 on the held-out seeds (62.6 on the development seed), against 11.4 for π0.5 alone and 55.3 for the best leaderboard entry as of Oct 26, 2026. Some tasks moved dramatically: making a kong in Mahjong went from 16.7 to 97.2, and the <code>arrange_largest_number</code> task from 2.5 to 88.3.</p>
+<figure><img src="../images/blog/eat/robodojo_make_kong.gif" alt="RoboDojo make_kong. Left: π0.5 alone. Right: the team&#x27;s code policy." loading="lazy"><figcaption>RoboDojo make_kong. Left: π0.5 alone. Right: the team&#x27;s code policy.</figcaption></figure>
+<h3>A model larger than memory, served from a Mac</h3>
+<p>Qwen3.8-Flash-Next at 4 bits is about 79 GB of weights, so on a 48 GB M4 Pro its experts have to stream from the SSD. Starting from a naive Metal port of the FreeToken MoE serving system, the team had to make it serve faster without changing the model: no skipping experts, no lower top-k, no fewer bits, with gates on output agreement, peak memory and swap. The score replays sessions recorded from a real coding-agent loop, plus a decode benchmark. All agents used Claude Opus 5.5, with web tools disabled.</p>
+<p>What I found most interesting was how often the supervisor changed the way the work was divided. It resized the team from one agent to three and then two, and re-cut the roles six times: by file type (I/O vs. compute), by bottleneck (speculation, cache, offload), by phase (decode vs. prefill), and finally by measured GPU time per token. One finding I would not have guessed came from a dedicated cache role: most decode misses had already been read during the preceding prefill, so the right lever was which experts to admit into the cache, not which to evict.</p>
+<p>The final engine serves the recorded sessions 3.32× faster than the naive engine and decodes at 30.3 tokens/s in MLX 4-bit, against 13.4.</p>
+<p>We then ran the engine on a GGUF file and a newer Mac, an M5 Pro with 48 GB, against Strata, an existing engine for the same model, on the same file and at the same peak memory (about 37 GiB). Prefill is about 3.3× faster at every prompt length from 4K to 250K tokens, and decode is 1.22× faster after a short prompt; after a 250K-token prompt the two decode at about the same speed. With Claude Code running on the local model, a small CSV feature with tests takes 233 seconds on average against Strata&#x27;s 386.</p>
+<figure><img src="../images/blog/eat/eat_mac_serving.png" alt="Qwen3.8-Flash-Next on 48 GB Macs: EAT&#x27;s engine against Strata at equal memory on an M5 Pro, and against the naive engine on an M4 Pro." loading="lazy"><figcaption>Qwen3.8-Flash-Next on 48 GB Macs: EAT&#x27;s engine against Strata at equal memory on an M5 Pro, and against the naive engine on an M4 Pro.</figcaption></figure>
+<figure><img src="../images/blog/eat/mac_m5_claude_code.gif" alt="Claude Code on the local model, M5 Pro, replayed at 20× speed: EAT&#x27;s engine (left) and Strata (right)." loading="lazy"><figcaption>Claude Code on the local model, M5 Pro, replayed at 20× speed: EAT&#x27;s engine (left) and Strata (right).</figcaption></figure>
+<p>This is also the task where the team helped least. In a second run, the team and a single agent both started from the already optimized engine. At $200 they were close. The single agent&#x27;s later changes were mostly parameter tweaks, like the half-life of the cache eviction policy, which helped the workload it was optimizing more than two held-out ones. The team led on both held-out workloads and kept finding real changes afterwards (decode lookahead hints, speculative decoding with exact verification, a larger victim cache). My reading is that when the remaining work is tuning within a stable design, one agent is competitive. The team matters when the problem is about to change shape.</p>
+<h3>An attention kernel on AMD MI350X</h3>
+<p>Kimi Delta Attention (KDA) is a linear-attention variant used in recent long-context models. The task was its prefill kernel on one AMD MI350X, scored against vLLM&#x27;s hand-written production kernels over ten workloads, starting from a port of those kernels.</p>
+<p>This was our longest run: 73 iterations over about eight days with Claude Opus 5.5, for $3.0K of API spend. The final kernel is 3.01× faster than vLLM&#x27;s (2.09× to 4.63× per workload) and 7.3× faster than the open-source Triton kernel from Flash Linear Attention. The biggest gains came from redesigns, not tuning: for example, a &quot;relay&quot; that fuses two stages and hands intermediate state between workgroups through the shared cache.</p>
+<figure><img src="../images/blog/eat/eat_team_evolution.png" alt="Team composition per iteration of the MI350X run. Each box is one agent; amber marks a role the supervisor had not used before. 42 distinct roles over 73 iterations." loading="lazy"><figcaption>Team composition per iteration of the MI350X run. Each box is one agent; amber marks a role the supervisor had not used before. 42 distinct roles over 73 iterations.</figcaption></figure>
+<p>Over the run the supervisor used 42 distinct roles: a diagnostician that only asked why the last team stalled, a transfer researcher bringing in ideas from other problems, &quot;fresh eyes&quot; redesigning from first principles without reading the current code, a lander that put finished candidates on idle machines. My favorite came late. Two iterations in a row shipped nothing, and the supervisor found that the team had been timing its ideas in a different power regime from the one the eval measured:</p>
+<blockquote><p><strong>ENERGY AUDITOR.</strong> &quot;The pattern runs on a power transient: device time is 1.08–1.29× the gapped time ... The team has therefore been pricing levers in a regime the score does not use. Your job is to fix the measurement and re-open what it may have mis-judged.&quot;</p></blockquote>
+<p>The next iteration set a new best. The team also caught a weakness in the task itself: the eval&#x27;s test inputs let a class of bugs pass unnoticed, so it added a stricter correctness check that every later version had to pass.</p>
+<p>From the same starting point with the same model, a single Claude Code agent reached 1.65× at $300; the team was at 2.13×.</p>
+<figure><img src="../images/blog/eat/eat_amd_matched_budget.png" alt="KDA prefill on MI350X over the first $300 of API spend." loading="lazy"><figcaption>KDA prefill on MI350X over the first $300 of API spend.</figcaption></figure>
+<h3>The same kernel on NVIDIA B200, in a clean room</h3>
+<p>The same operator on an NVIDIA B200, scored against FlashKDA, a fused CUTLASS implementation. This run had no web access, only a fixed set of local references, including an existing kernel that the first team ported. Iterations 1 to 5 used Claude Opus 5.5 and later ones Claude Sonnet 5.5.</p>
+<p>This run shows restructuring most clearly. Each team was designed from the supervisor&#x27;s diagnosis of the previous one:</p>
+<figure><img src="../images/blog/eat/eat_b200_teams.png" alt="The first five iterations of the B200 run: the supervisor&#x27;s diagnosis, the team it designed, and the score that team reached." loading="lazy"><figcaption>The first five iterations of the B200 run: the supervisor&#x27;s diagnosis, the team it designed, and the score that team reached.</figcaption></figure>
+<ul><li><strong>Iteration 2.</strong> &quot;Plateau cause = team structure: one agent, anchored on an inherited 2.5k-line generated kernel, so every idea was a patch to its fixed decomposition.&quot; An architect, an optimizer and an analyst replaced the single agent.</li><li><strong>Iteration 3.</strong> &quot;The dynamic instruction count is the unattacked term: no role does SASS-level accounting.&quot; It created an <code>issue_economist</code>, and added a rule against stopping early.</li><li><strong>Iteration 4.</strong> &quot;A classic local optimum ... Nobody re-examined the fused-kernel structure itself.&quot; Same roles, but the architect was re-briefed to first explain why its earlier redesign had missed.</li><li><strong>Iteration 5.</strong> &quot;The largest measured slack is the prep work per token; no role owns reducing it.&quot; A <code>prep_architect</code> took it over.</li></ul>
+<p>None of these roles is exotic; a good engineering lead might create any of them. What a fixed design cannot provide is the timing. The cost-accounting role only makes sense once the design has settled, and the prep role only once everything else is fast enough that prep becomes the largest cost.</p>
+<p>The final kernel is 3.44× faster than FlashKDA. KDA², a set of agent-written KDA kernels, reports 2.96× on the newer B300; running both in the same harness on the same B300, our kernel (recompiled, no code changes) scores 3.54× against 3.02× for KDA²&#x27;s best. Since the run started from a port of existing kernels, it measures improvement over a strong start rather than from scratch.</p>
+<h2>What I am still thinking about</h2>
+<ul><li><strong>The supervisor&#x27;s own memory.</strong> In long runs it compacts its context several times and rebuilds its picture from the file system. That mostly works, but the supervisor is now the longest-lived agent in the system, and its memory is the weakest link.</li><li><strong>Cost.</strong> Eight days and $3K for one result is efficient compared with a single agent at the same budget, but it is still a lot.</li><li><strong>Noisy feedback.</strong> All four tasks have a precise, fast score. A supervisor diagnosing plateaus from noisy numbers will diagnose the wrong things.</li><li><strong>Learning across tasks.</strong> Every run starts with no roles, yet many roles recur: a challenger, an integrator, an auditor. A supervisor that carries lessons from one problem to the next seems like the obvious next step, but I am not sure what should transfer and what should be rediscovered each time.</li></ul>
+<h2>Try it</h2>
+<p>EAT runs as a Claude Code plugin:</p>
+<pre><code>/plugin install eat --marketplace caoshiyi/EAT</code></pre>
+<p>Then, in the repository you want to improve, ask something like &quot;Use EAT to make bench.py faster on GPUs 0 and 1. Budget $200.&quot; It works on anything with a score you can compute.</p>
+<p>Every supervisor and agent transcript from these runs is public, so you can read each diagnosis and redesign yourself:</p>
+<ul><li><strong>Paper</strong> (NeurIPS 2026): <a href="https://arxiv.org/abs/2610.36848">arxiv.org/abs/2610.36848</a></li><li><strong>Code:</strong> <a href="https://github.com/caoshiyi/EAT">github.com/caoshiyi/EAT</a></li><li><strong>RoboDojo policy:</strong> <a href="https://github.com/caoshiyi/eat-robodojo-policy">github.com/caoshiyi/eat-robodojo-policy</a></li><li><strong>Kernels:</strong> <a href="https://github.com/caoshiyi/eat-kernels">github.com/caoshiyi/eat-kernels</a></li><li><strong>Transcripts:</strong> <a href="https://huggingface.co/datasets/eva98/eat-evolution-traces">eva98/eat-evolution-traces</a></li><li><strong>Tasks:</strong> <a href="https://huggingface.co/datasets/eva98/eat-gym">EAT Gym</a></li></ul>
+<p>This is joint work with Ziming Mao, Dacheng Li, Joey Gonzalez and Ion Stoica at Berkeley&#x27;s Sky Computing Lab.</p>
+<pre><code>@inproceedings{cao2026eat,
+  title     = {Evolving Agent Teams},
+  author    = {Cao, Shiyi and Mao, Ziming and Li, Dacheng and Gonzalez, Joseph E. and Stoica, Ion},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year      = {2026}
+}</code></pre>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="wrap footer-row">
+            <span class="cn">曹诗怡</span>
+            <span>© 2026 Shiyi Cao</span>
+            <div class="footer-links">
+                <a href="mailto:shiyicao314@gmail.com">Email</a>
+                <a href="https://github.com/caoshiyi">GitHub</a>
+                <a href="https://scholar.google.com/citations?user=NR59_v4AAAAJ">Scholar</a>
+            </div>
+        </div>
+    </footer>
+    <script src="../site.js?v=7"></script>
+</body>
+</html>

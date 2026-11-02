@@ -113,6 +113,17 @@ def render_prose(src: str) -> str:
             out.append(f"<h2>{inline(line[3:].strip())}</h2>")
             i += 1
             continue
+        figure = re.match(r"^!\[([^\]]*)\]\(([^)\s]+)\)\s*$", line.strip())
+        if figure:
+            caption, src = figure.groups()
+            alt = html.escape(re.sub(r"[*`]", "", caption), quote=True)
+            out.append(
+                f'<figure><img src="{html.escape(src, quote=True)}" alt="{alt}" loading="lazy">'
+                + (f"<figcaption>{inline(caption)}</figcaption>" if caption else "")
+                + "</figure>"
+            )
+            i += 1
+            continue
         if line.startswith("> "):
             quote = []
             while i < len(lines) and lines[i].startswith("> "):
@@ -136,7 +147,7 @@ def render_prose(src: str) -> str:
             continue
         para = [line.strip()]
         i += 1
-        while i < len(lines) and lines[i].strip() and not re.match(r"^(#{2,3} |> |[-*] |\d+\. )", lines[i]):
+        while i < len(lines) and lines[i].strip() and not re.match(r"^(#{2,3} |> |[-*] |\d+\. |!\[)", lines[i]):
             para.append(lines[i].strip())
             i += 1
         out.append("<p>" + inline(" ".join(para)) + "</p>")
