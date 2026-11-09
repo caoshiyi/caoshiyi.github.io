@@ -32,7 +32,7 @@ INDEX = ROOT / "index.html"
 HEAD_LINKS = """
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Great+Vibes&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Great+Vibes&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 """
 
 THEME = """
@@ -179,7 +179,7 @@ def chrome(title: str, description: str, depth: str, current: str) -> str:
     <meta name="author" content="Shiyi Cao">
     <meta name="description" content="{html.escape(description)}">
     <link rel="icon" type="image/png" href="{depth}images/logo%203.png">
-    <link rel="stylesheet" href="{depth}stylesheet.css?v=7">
+    <link rel="stylesheet" href="{depth}stylesheet.css?v=15">
     <link rel="alternate" type="application/rss+xml" title="Shiyi Cao" href="{depth}blog/feed.xml">
 {HEAD_LINKS}
 {THEME}
@@ -218,7 +218,7 @@ def footer(depth: str) -> str:
             </div>
         </div>
     </footer>
-    <script src="{depth}site.js?v=7"></script>
+    <script src="{depth}site.js?v=15"></script>
 </body>
 </html>
 """
