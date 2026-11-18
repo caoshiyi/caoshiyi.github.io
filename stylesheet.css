@@ -511,6 +511,28 @@ html:not([data-theme="dark"]) .icon-sun { display: none; }
     padding-top: 3px;
 }
 .talk p { margin: 0; }
+.talk-grp {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+}
+.talk-grp:first-of-type { border-top: 1px solid var(--line); }
+.talk-topic { font-weight: 650; }
+.talk-hosts { display: flex; flex-wrap: wrap; align-items: baseline; row-gap: 6px; }
+.talk-host { white-space: nowrap; }
+.talk-host a { color: var(--ink); font-weight: 600; border-bottom: 1px solid var(--line-strong); }
+.talk-host a:hover { border-color: var(--ink); text-decoration: none; }
+.talk-host img { display: inline-block; width: 16px; height: 16px; object-fit: contain; vertical-align: -3px; margin-right: 6px; border-radius: 3px; }
+.talk-host img.wide { width: auto; height: 13px; vertical-align: -2px; }
+.talk-host img.lead-mark { width: auto; height: 15px; vertical-align: -3px; }
+.talk-host img.wordmark { width: auto; height: 12px; margin-right: 0; vertical-align: -1px; }
+html[data-theme="dark"] .talk-host img.wordmark,
+html[data-theme="dark"] .talk-host img.mono { filter: invert(1); }
+.talk-host img.wordmark + .wm-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.talk-date { font-family: var(--font-mono); font-size: 0.74rem; color: var(--muted); }
+.talk-sep { margin: 0 10px; color: var(--muted); }
 .earlier summary {
     list-style: none;
     cursor: pointer;
@@ -789,5 +811,7 @@ html:not([data-theme="dark"]) .icon-sun { display: none; }
     .pub-media { height: 140px; }
     .pub-media img { max-height: 124px; }
     .news-row, .talk, .post-link { grid-template-columns: 64px minmax(0, 1fr); gap: 10px; }
+    .talk-grp { grid-template-columns: 1fr; gap: 6px; }
+    .talk-host { white-space: normal; }
     .chip { min-width: 92px; }
 }
