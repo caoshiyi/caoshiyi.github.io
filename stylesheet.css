@@ -603,16 +603,9 @@ html:not([data-theme="dark"]) .icon-sun { display: none; }
     font-weight: 600;
 }
 .tags { margin: 6px 0 0; color: var(--muted); font-size: 0.86rem; }
-.press {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 4px 0;
-    margin: 6px 0 0;
-    font-size: 0.9rem;
-}
+.press { margin: 6px 0 0; font-size: 0.9rem; line-height: 1.7; }
 .press-label {
-    margin-right: 10px;
+    margin-right: 4px;
     font-family: var(--font-mono);
     font-size: 0.72rem;
     letter-spacing: 0.06em;
@@ -626,7 +619,7 @@ html:not([data-theme="dark"]) .icon-sun { display: none; }
     border-bottom: 1px solid var(--line-strong);
 }
 .press a:hover { border-color: var(--ink); text-decoration: none; }
-.press-sep { margin: 0 9px; color: var(--muted); }
+.press-sep { margin: 0 4px; color: var(--muted); }
 .pub-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .pub-links a {
     display: inline-flex;
