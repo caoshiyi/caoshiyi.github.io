@@ -603,6 +603,7 @@ html:not([data-theme="dark"]) .icon-sun { display: none; }
     font-weight: 600;
 }
 .tags { margin: 6px 0 0; color: var(--muted); font-size: 0.86rem; }
+.press { margin: 6px 0 0; font-size: 0.86rem; }
 .pub-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .pub-links a {
     display: inline-flex;
